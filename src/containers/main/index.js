@@ -152,7 +152,29 @@ class App extends Component {
           </div>
           <div className="hdrright">
             <a>{this.state.nick}</a>
-            <button>Logout</button>
+            <button
+              onClick={() => {
+                this.setState({
+                  email: null,
+                  password: null,
+                  token: null,
+                  grantlevel: null,
+                  auth: false,
+                  idvip: null,
+                  nick: null,
+                  nome: null,
+                  errorauth: false,
+                  streamingsrc: null,
+                  titulo: null,
+                  formErrors: {
+                    email: "",
+                    password: "",
+                  },
+                });
+              }}
+            >
+              Logout
+            </button>
           </div>
         </div>
         <div className="client">
