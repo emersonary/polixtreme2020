@@ -1,0 +1,254 @@
+/* Colors */
+/*
+dark blue: #476A6F
+light blue: #258EA6
+dark green: #519E8A
+medium green: #7EB09B
+light green: #A3C4BC
+*/
+
+html,
+body,
+#app,
+#app > div,
+#root {
+  height: 100%;
+}
+[data-reactroot] {
+  height: 100% !important;
+}
+
+.streaming {
+  height: 100%;
+  background: red;
+}
+
+.polixtream {
+  margin-bottom: 100px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  background-image: url("../../assets/header.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex: 1;
+  height: 40px;
+  padding: 10px;
+  text-align: center;
+
+  color: white;
+  font-size: 10px;
+}
+
+.hdrleft {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hdrleft a {
+  font-size: 1.5em;
+  margin-left: 10px;
+  margin-top: 3px;
+  font-weight: bold;
+}
+
+.hdrleft p {
+  font-size: 1.2em;
+  margin-left: 10px;
+  margin-top: 15px;
+  font-weight: normal;
+}
+
+.hdrright {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.hdrright a {
+  font-size: 1.5em;
+  margin-right: 5px;
+  margin-top: 3px;
+  font-weight: bold;
+}
+
+.hdrright button {
+  border: 2px solid #c81d25aa;
+  width: 100px;
+  background-color: #0000;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0.5em;
+  padding: 8px 0px;
+  font-size: 1.5em;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.hdrright button:hover {
+  background-color: #c81d25;
+}
+
+.client {
+  flex: 1;
+  text-align: center;
+  background: #333;
+  color: white;
+  height: 200%;
+  font-size: 10px;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+.upper:placeholder-shown {
+  text-transform: none;
+}
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #258ea6;
+  background-image: url("../../assets/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-y: -200px;
+}
+
+.form-wrapper {
+  text-transform: none;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 10px 50px #555;
+  background-color: #000a;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+h1 {
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  font-weight: bold;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+label {
+  font-size: 0.8em;
+  margin-bottom: 0.25em;
+  color: #fff;
+  font-weight: lighter;
+}
+
+input {
+  padding: 10px 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #cfcfcf;
+}
+
+input::placeholder {
+  font-size: 1.2em;
+  font-weight: lighter;
+  color: #999;
+}
+
+input.error {
+  border: 1px solid red;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.75em;
+  font-weight: bold;
+  display: relative;
+  text-transform: none;
+}
+
+.errorAuth {
+  color: red;
+  font-size: 1em;
+  margin-top: 10px;
+  margin-bottom: 0;
+  font-weight: bold;
+  display: relative;
+  text-align: center;
+  text-transform: none;
+}
+
+.firstName {
+  margin-right: 1%;
+}
+
+.lastName {
+  margin-left: 1%;
+}
+
+.firstName,
+.lastName,
+.email,
+.password {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.firstName,
+.lastName {
+  width: 49%;
+}
+
+.email,
+.password {
+  width: 100%;
+}
+
+.createAccount {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.createAccount button {
+  background-color: #c81d25aa;
+  border: 2px solid #c81d25aa;
+  color: #fff;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 1em;
+  padding: 8px 0px;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 0.45em;
+}
+
+.createAccount button:hover {
+  background-color: #c81d25;
+  border: 2px solid #c81d25;
+}
+
+.createAccount small {
+  color: #999;
+  font-weight: lighter;
+}
