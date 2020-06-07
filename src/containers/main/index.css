@@ -27,6 +27,11 @@ body,
   margin-bottom: 100px;
 }
 
+.polixtream img {
+  width: 100%;
+  height: auto;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -61,6 +66,13 @@ body,
   margin-left: 10px;
   margin-top: 15px;
   font-weight: normal;
+}
+
+@media only screen and (max-width: 600px) {
+  .hdrleft p,
+  .hdrleft a {
+    display: none;
+  }
 }
 
 .hdrright {
@@ -122,7 +134,13 @@ body,
   background-image: url("../../assets/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-y: -200px;
+  background-position-y: -20px;
+}
+
+@media only screen and (min-width: 600px) {
+  .wrapper {
+    background-position-y: -200px;
+  }
 }
 
 .form-wrapper {

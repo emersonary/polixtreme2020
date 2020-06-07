@@ -92,7 +92,7 @@ class App extends Component {
     return (
       <div className="wrapper">
         <div className="polixtream">
-          <img src={img_polixtream} alt="" width="600" height="211" />
+          <img src={img_polixtream} alt="" />
         </div>
 
         <div className="form-wrapper">
