@@ -1,0 +1,3 @@
+[2020-6-6 14:10:25] layer "POLISHOP, ": Expected end of input but "," found.
+[2020-6-6 14:10:20] layer "Gilberto Guitti  Diretor Polishop com.vc": Unsupported extension: vc
+[2020-6-6 14:10:20] layer "Gilberto Guitti Diretor  Polishop com.vc ": Unsupported extension: vc
