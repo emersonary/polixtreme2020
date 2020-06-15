@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import "./index.css";
 import api from "../../services/api";
+import axios from "axios";
+import zlib from "react-zlib-js";
+import { instanceOf } from "prop-types";
+import { withCookies, Cookies } from "react-cookie";
 
 import img_polixtream from "../../assets/polixtream.png";
 import img_smallpolixtream2020 from "../../assets/small_polixtream2020.png";
 
 // const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
+
+let TimeOutVar = null;
 
 const formValid = (formErrors) => {
   let valid = true;
@@ -16,26 +22,112 @@ const formValid = (formErrors) => {
 
   return valid;
 };
+
+function encriptstate(data) {
+  return zlib.deflateSync(JSON.stringify(data)).toString("base64");
+}
+
+function descriptstate(data) {
+  if (data && data != "null") {
+    const buf = Buffer.from(data, "base64");
+    return JSON.parse(zlib.inflateSync(buf).toString());
+  } else return null;
+}
+
+async function iniciasessao(username) {
+  let returndata = null;
+
+  await axios
+    .post(
+      "https://ws-1.polishop.com/psm/sessoes/teste1",
+      { id: username, data: null },
+      {
+        timeout: 30000,
+      }
+    )
+    .then((response) => {
+      if (response.status === 200) {
+        returndata = response.data.session;
+      }
+    })
+    .catch((err) => {
+      return null;
+    });
+
+  return returndata;
+}
+
+async function terminarsessao(sessionid) {
+  let returndata = null;
+
+  await axios
+    .delete("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, {
+      timeout: 30000,
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        returndata = true;
+      }
+    })
+    .catch((err) => {
+      return null;
+    });
+
+  return returndata;
+}
+
+async function refreshsessao(sessionid) {
+  let returndata = null;
+
+  await axios
+    .put("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
+      timeout: 30000,
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        returndata = response.data.session;
+      }
+    })
+    .catch((err) => {
+      return null;
+    });
+
+  return returndata;
+}
+
 class Streaming extends Component {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired,
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      email: null,
-      password: null,
-      token: null,
-      grantlevel: null,
-      auth: false,
-      idvip: null,
-      nick: null,
-      nome: null,
-      errorauth: false,
-      streamingsrc: null,
-      titulo: null,
-      formErrors: {
-        email: "",
-        password: "",
-      },
-    };
+
+    const { cookies } = props;
+
+    const state = descriptstate(cookies.get("state"));
+
+    if (state) {
+      this.state = state;
+    } else
+      this.state = {
+        email: null,
+        password: null,
+        token: null,
+        grantlevel: null,
+        auth: false,
+        idvip: null,
+        nick: null,
+        nome: null,
+        errorauth: false,
+        errorsessao: false,
+        streamingsrc: null,
+        titulo: null,
+        formErrors: {
+          email: "",
+          password: "",
+        },
+      };
   }
 
   handleChange = (e) => {
@@ -51,6 +143,42 @@ class Streaming extends Component {
 
     formErrors.password =
       password == null || password.length < 3 ? "Senha Inválida" : "";
+  };
+
+  handleRefresh = async () => {
+    const { cookies } = this.props;
+    const newsessionid = await refreshsessao(cookies.get("sessionid"));
+
+    if (newsessionid) {
+      cookies.set("sessionid", newsessionid, { path: "/" });
+    }
+  };
+
+  handleLogout = () => {
+    clearTimeout(TimeOutVar);
+    const { cookies } = this.props;
+
+    terminarsessao(cookies.get("sessionid"));
+    cookies.set("sessionid", null, { path: "/" });
+    cookies.set("state", null, { path: "/" });
+
+    this.setState({
+      email: null,
+      password: null,
+      token: null,
+      grantlevel: null,
+      auth: false,
+      idvip: null,
+      nick: null,
+      nome: null,
+      errorauth: false,
+      streamingsrc: null,
+      titulo: null,
+      formErrors: {
+        email: "",
+        password: "",
+      },
+    });
   };
 
   handleSubmit = async (e) => {
@@ -70,11 +198,21 @@ class Streaming extends Component {
       });
 
       if (res) {
+        const sessionid = res.auth ? await iniciasessao(email) : null;
+
+        const { cookies } = this.props;
+
+        if (sessionid) {
+          cookies.set("sessionid", sessionid, { path: "/" });
+          cookies.set("state", encriptstate(res), { path: "/" });
+        }
+
         this.setState({
-          auth: res.auth,
+          auth: res.auth && sessionid,
           errorauth: !res.auth,
           grantlevel: res.grantlevel,
           titulo: res.titulo,
+          errorsessao: !sessionid,
           streamingsrc: res.streamingsrc,
           idvip: res.idvip,
           nick: res.nick,
@@ -130,6 +268,12 @@ class Streaming extends Component {
               {this.state.errorauth && (
                 <span className="errorAuth">Credenciais Inválidas!</span>
               )}
+              {this.state.errorsessao && (
+                <span className="errorAuth">
+                  USUÁRIO {this.state.email.toUpperCase()} JÁ ESTÁ LOGADO EM
+                  OUTRA SESSÃO!
+                </span>
+              )}
             </div>
 
             <div className="createAccount">
@@ -142,6 +286,9 @@ class Streaming extends Component {
   };
 
   StreamScreen = () => {
+    if (this.state.auth) {
+      TimeOutVar = setTimeout(this.handleRefresh, 5000);
+    }
     return (
       <div className="streaming">
         <div className="header">
@@ -152,29 +299,7 @@ class Streaming extends Component {
           </div>
           <div className="hdrright">
             <a>{this.state.nick}</a>
-            <button
-              onClick={() => {
-                this.setState({
-                  email: null,
-                  password: null,
-                  token: null,
-                  grantlevel: null,
-                  auth: false,
-                  idvip: null,
-                  nick: null,
-                  nome: null,
-                  errorauth: false,
-                  streamingsrc: null,
-                  titulo: null,
-                  formErrors: {
-                    email: "",
-                    password: "",
-                  },
-                });
-              }}
-            >
-              Logout
-            </button>
+            <button onClick={this.handleLogout}>Logout</button>
           </div>
         </div>
         <div className="client">
@@ -183,8 +308,8 @@ class Streaming extends Component {
             src="https://static.netshow.me/integration/embed.js"
           ></script>
           <iframe
-            allowfullscreen="yes"
-            frameborder="0"
+            allowFullScreen="yes"
+            frameBorder="0"
             scrolling="yes"
             src={this.state.streamingsrc}
             width="100%"
@@ -201,4 +326,4 @@ class Streaming extends Component {
   }
 }
 
-export default Streaming;
+export default withCookies(Streaming);
