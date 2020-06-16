@@ -28,19 +28,19 @@ function encriptstate(data) {
 }
 
 function descriptstate(data) {
-  if (data && data != "null") {
+  if (data && data !== "null") {
     const buf = Buffer.from(data, "base64");
     return JSON.parse(zlib.inflateSync(buf).toString());
   } else return null;
 }
 
-async function iniciasessao(username) {
+async function iniciasessao(username, state) {
   let returndata = null;
 
   await axios
     .post(
       "https://ws-1.polishop.com/psm/sessoes/teste1",
-      { id: username, data: null },
+      { id: username, data: state },
       {
         timeout: 30000,
       }
@@ -92,6 +92,26 @@ async function refreshsessao(sessionid) {
       return null;
     });
 
+  console.log("refresh_session", returndata);
+  return returndata;
+}
+
+async function getres(sessionid) {
+  let returndata = null;
+
+  await axios
+    .get("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
+      timeout: 30000,
+    })
+    .then((response) => {
+      if (response.status === 200) {
+        returndata = response.data.data;
+      }
+    })
+    .catch((err) => {
+      return null;
+    });
+
   return returndata;
 }
 
@@ -103,32 +123,58 @@ class Streaming extends Component {
   constructor(props) {
     super(props);
 
-    const { cookies } = props;
-
-    const state = descriptstate(cookies.get("state"));
-
-    if (state) {
-      this.state = state;
-    } else
-      this.state = {
-        email: null,
-        password: null,
-        token: null,
-        grantlevel: null,
-        auth: false,
-        idvip: null,
-        nick: null,
-        nome: null,
-        errorauth: false,
-        errorsessao: false,
-        streamingsrc: null,
-        titulo: null,
-        formErrors: {
-          email: "",
-          password: "",
-        },
-      };
+    this.state = {
+      email: null,
+      password: null,
+      token: null,
+      grantlevel: null,
+      auth: null,
+      idvip: null,
+      nick: null,
+      nome: null,
+      errorauth: false,
+      errorsessao: false,
+      streamingsrc: null,
+      titulo: null,
+      formErrors: {
+        email: "",
+        password: "",
+      },
+    };
   }
+
+  UNSAFE_componentWillMount = async () => {
+    const { cookies } = this.props;
+
+    let res = null;
+
+    const sessionid = cookies.get("sessionid");
+
+    if (sessionid && sessionid !== "null") {
+      res = descriptstate(await getres(sessionid));
+
+      if (!res) {
+        cookies.set("sessionid", null, { path: "/" });
+      }
+    }
+    if (res) {
+      console.log("retrieved res", res);
+      this.setState({
+        auth: res.auth,
+        errorauth: !res.auth,
+        grantlevel: res.grantlevel,
+        titulo: res.titulo,
+        streamingsrc: res.streamingsrc,
+        errorsessao: false,
+        idvip: res.idvip,
+        nick: res.nick,
+        nome: res.nome,
+      });
+    } else
+      this.setState({
+        auth: false,
+      });
+  };
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -198,26 +244,31 @@ class Streaming extends Component {
       });
 
       if (res) {
-        const sessionid = res.auth ? await iniciasessao(email) : null;
+        const sessionid = res.auth
+          ? await iniciasessao(email, encriptstate(res))
+          : null;
 
-        const { cookies } = this.props;
-
-        if (sessionid) {
-          cookies.set("sessionid", sessionid, { path: "/" });
-          cookies.set("state", encriptstate(res), { path: "/" });
-        }
-
-        this.setState({
+        const state = {
           auth: res.auth && sessionid,
           errorauth: !res.auth,
           grantlevel: res.grantlevel,
           titulo: res.titulo,
-          errorsessao: !sessionid,
           streamingsrc: res.streamingsrc,
+          errorsessao: !sessionid,
           idvip: res.idvip,
           nick: res.nick,
           nome: res.nome,
-        });
+        };
+
+        const { cookies } = this.props;
+
+        if (res.auth && sessionid) {
+          cookies.set("sessionid", sessionid, { path: "/" });
+        } else {
+          cookies.set("sessionid", null, { path: "/" });
+        }
+
+        this.setState(state);
       }
     } else {
       console.error("FORM INVALIDA - DISPLAY ERROR MESSAGE ");
@@ -226,6 +277,8 @@ class Streaming extends Component {
 
   LoginScreen = () => {
     const { formErrors } = this.state;
+
+    if (this.state.auth == null) return null;
 
     return (
       <div className="wrapper">
@@ -295,7 +348,6 @@ class Streaming extends Component {
           <div className="hdrleft">
             <img src={img_smallpolixtream2020} alt="" />
             <a>Streaming: {this.state.titulo}</a>
-            <p>(123 pessoas assistindo)</p>
           </div>
           <div className="hdrright">
             <a>{this.state.nick}</a>
@@ -322,6 +374,7 @@ class Streaming extends Component {
   };
 
   render() {
+    console.log("render");
     return this.state.auth ? this.StreamScreen() : this.LoginScreen();
   }
 }
