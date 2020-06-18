@@ -37,20 +37,27 @@ function descriptstate(data) {
 async function iniciasessao(username, state) {
   let returndata = null;
 
+  console.log("post", "https://ws-1.polishop.com/psm/sessoes/teste1", {
+    id: username,
+    data: state,
+  });
+
   await axios
     .post(
       "https://ws-1.polishop.com/psm/sessoes/teste1",
-      { id: username, data: state },
+      { id: username.toUpperCase(), data: state },
       {
         timeout: 30000,
       }
     )
     .then((response) => {
+      console.log(response);
       if (response.status === 200) {
         returndata = response.data.session;
       }
     })
     .catch((err) => {
+      console.log(err);
       return null;
     });
 
@@ -60,16 +67,23 @@ async function iniciasessao(username, state) {
 async function terminarsessao(sessionid) {
   let returndata = null;
 
+  console.log(
+    "delete",
+    "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
+  );
+
   await axios
     .delete("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, {
       timeout: 30000,
     })
     .then((response) => {
-      if (response.status === 200) {
+      console.log(response);
+      if (response.status === 204) {
         returndata = true;
       }
     })
     .catch((err) => {
+      console.log(err);
       return null;
     });
 
@@ -79,36 +93,49 @@ async function terminarsessao(sessionid) {
 async function refreshsessao(sessionid) {
   let returndata = null;
 
+  console.log(
+    "put",
+    "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
+  );
+
   await axios
     .put("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
       timeout: 30000,
     })
     .then((response) => {
+      console.log(response);
       if (response.status === 200) {
         returndata = response.data.session;
       }
     })
     .catch((err) => {
+      console.log(err);
       return null;
     });
 
-  console.log("refresh_session", returndata);
   return returndata;
 }
 
 async function getres(sessionid) {
   let returndata = null;
 
+  console.log(
+    "get",
+    "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
+  );
+
   await axios
     .get("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
       timeout: 30000,
     })
     .then((response) => {
+      console.log(response);
       if (response.status === 200) {
         returndata = response.data.data;
       }
     })
     .catch((err) => {
+      console.log(err);
       return null;
     });
 
@@ -158,7 +185,6 @@ class Streaming extends Component {
       }
     }
     if (res) {
-      console.log("retrieved res", res);
       this.setState({
         auth: res.auth,
         errorauth: !res.auth,
@@ -173,6 +199,7 @@ class Streaming extends Component {
     } else
       this.setState({
         auth: false,
+        errorsessao: false,
       });
   };
 
@@ -200,11 +227,11 @@ class Streaming extends Component {
     }
   };
 
-  handleLogout = () => {
+  handleLogout = async () => {
     clearTimeout(TimeOutVar);
     const { cookies } = this.props;
 
-    terminarsessao(cookies.get("sessionid"));
+    await terminarsessao(cookies.get("sessionid"));
     cookies.set("sessionid", null, { path: "/" });
     cookies.set("state", null, { path: "/" });
 
@@ -214,6 +241,7 @@ class Streaming extends Component {
       token: null,
       grantlevel: null,
       auth: false,
+      errorsessao: false,
       idvip: null,
       nick: null,
       nome: null,
@@ -233,6 +261,7 @@ class Streaming extends Component {
     this.handleValidate(this.state);
 
     this.state.errorauth = false;
+    this.state.errorsessao = false;
     this.setState(this.state);
 
     if (formValid(this.state.formErrors)) {
@@ -249,12 +278,12 @@ class Streaming extends Component {
           : null;
 
         const state = {
-          auth: res.auth && sessionid,
+          auth: res.auth && !!sessionid,
           errorauth: !res.auth,
           grantlevel: res.grantlevel,
           titulo: res.titulo,
           streamingsrc: res.streamingsrc,
-          errorsessao: !sessionid,
+          errorsessao: !sessionid && res.auth,
           idvip: res.idvip,
           nick: res.nick,
           nome: res.nome,
@@ -374,7 +403,6 @@ class Streaming extends Component {
   };
 
   render() {
-    console.log("render");
     return this.state.auth ? this.StreamScreen() : this.LoginScreen();
   }
 }
