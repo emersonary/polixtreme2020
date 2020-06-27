@@ -23,8 +23,8 @@
   bottom: 0;
   /* height: 100%; */
   /* bottom: 0;
-    transform: translateX(-50%);
-    z-index: 1; */
+  transform: translateX(-50%);
+  z-index: 1; */
 }
 #first-section .ct-to-invite {
   position: relative;
@@ -70,8 +70,8 @@
   width: 100%;
 }
 /* #second-section img {
-    transform: scale(1.3);
-    transform-origin: bottom;
+  transform: scale(1.3);
+  transform-origin: bottom;
 } */
 #second-section #appolinario img {
   transform: scale(1.5);
@@ -149,18 +149,20 @@
 }
 
 /* #eighth-section .container {
-    position: relative;
-    max-width: 1435px;
-    align-items: center;
+  position: relative;
+  max-width: 1435px;
+  align-items: center;
 }
 #eighth-section .bg-final {
-    width: 100%;
+  width: 100%;
 }
 #eighth-section .content {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 } */
+
+
 
 #first-section .ct-to-invite {
   padding-top: 0px;
@@ -259,210 +261,211 @@
 }
 
 @media (max-width: 480px) {
-  .avatar-desk {
-    display: none !important;
+  .avatar-desk  {
+      display: none !important;
   }
   .avatar-mobile {
-    display: block !important;
+      display: block !important;
   }
   .embed-video {
-    height: 300px;
+      height: 300px;
   }
   .the-plan {
-    text-align: center;
+      text-align: center;
   }
   .the-plan br {
-    display: none;
+      display: none;
   }
   #sixth-section p {
-    font-size: 16px;
-    margin-top: 10px;
-    opacity: 0.8;
+      font-size: 16px;
+      margin-top: 10px;
+      opacity: 0.8;
   }
 
   #eighth-section .txt-final {
-    margin-top: 50px;
-    line-height: 1.8;
-    font-size: 20px;
-    padding: 0px 24px;
+      margin-top: 50px;
+      line-height: 1.8;
+      font-size: 20px;
+      padding: 0px 24px;
   }
   #eighth-section .txt-final-02 {
-    margin-top: 0;
-    margin-bottom: 120px;
+      margin-top: 0;
+      margin-bottom: 120px;
   }
 
   #first-section strong {
-    margin-top: 4px;
-    font-size: 28px;
-    display: block;
+      margin-top: 4px;
+      font-size: 28px;
+      display: block;
   }
 
   #first-section h1 {
-    font-size: 18px;
+      font-size: 18px;
   }
 }
 
 @media (max-width: 767px) {
   #eighth-section .btns-stores a img {
-    max-width: 150px;
+      max-width: 150px;
   }
   #third-section .row {
-    padding: 0 32px;
-    margin: 0;
+      padding: 0 32px;
+      margin: 0;
   }
   #sixth-section h5,
   #second-section h5 {
-    font-size: 15px;
+      font-size: 15px;
   }
   #sixth-section h5 {
-    padding-top: 6px;
+      padding-top: 6px;
   }
   #sixth-section h5 + p {
-    font-size: 11px;
+      font-size: 11px;
   }
   #second-section h5 + p {
-    font-size: 11px;
-    padding-top: 6px;
+      font-size: 11px;
+      padding-top: 6px;
   }
   #second-section .flash-content br {
-    /* #eighth-section .row.fourth-row br { */
-    content: " ";
+  /* #eighth-section .row.fourth-row br { */
+      content: ' ';
   }
   #second-section .flash-content br::after {
-    /* #eighth-section .row.fourth-row br::after { */
-    content: " ";
+  /* #eighth-section .row.fourth-row br::after { */
+      content: ' ';
   }
   #second-section .row.leaders img {
-    padding-bottom: 12px;
+      padding-bottom: 12px;
   }
   #eighth-section .txt-final {
-    font-size: 16px;
-    line-height: 1.5;
+      font-size: 16px;
+      line-height: 1.5;
   }
   #eighth-section .container {
-    padding: 0 32px;
-    max-width: 100%;
-    width: auto;
+      padding: 0 32px;
+      max-width: 100%;
+      width: auto;
   }
   .octo-leaders {
-    margin: -12px 0;
-    padding: 0 16px;
+      margin: -12px 0;
+      padding: 0 16px;
   }
 }
 
 @media (min-width: 768px) {
+
   #first-section .ct-to-invite {
-    padding-top: 0px;
-    /* padding-bottom: 270px; */
+      padding-top: 0px;
+      /* padding-bottom: 270px; */
   }
   #first-section p {
-    margin-bottom: 25px;
+      margin-bottom: 25px;
   }
   #first-section h1 {
-    margin-bottom: 25px;
+      margin-bottom: 25px;
   }
   #first-section strong {
-    font-size: 50px;
+      font-size: 50px;
   }
   #second-section .flash-box {
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 150px;
+      margin-left: 50px;
+      margin-right: 50px;
+      margin-bottom: 150px;
   }
   #second-section h5 {
-    font-size: 30px;
+      font-size: 30px;
   }
 
   #third-section .row {
-    padding: 0 150px;
-    margin: 75px 0;
+      padding: 0 150px;
+      margin: 75px 0;
   }
 
   #fifth-section {
-    padding-bottom: 120px;
+      padding-bottom: 120px;
   }
 
   #sixth-section h4 {
-    margin-bottom: 90px;
+      margin-bottom: 90px;
   }
   #sixth-section p {
-    font-size: 29px;
+      font-size: 29px;
   }
 }
 @media (min-width: 1024px) {
   #first-section .ct-to-invite {
-    padding-top: 0px;
-    /* padding-bottom: 370px; */
+      padding-top: 0px;
+      /* padding-bottom: 370px; */
   }
   #first-section p {
-    margin-bottom: 50px;
+      margin-bottom: 50px;
   }
   #first-section h1 {
-    margin-bottom: 50px;
+      margin-bottom: 50px;
   }
   #first-section strong {
-    font-size: 60.5px;
+      font-size: 60.5px;
   }
 
   #second-section {
-    /* padding-bottom: 75px; */
+      /* padding-bottom: 75px; */
   }
   #second-section .flash-box {
-    margin-left: 225px;
-    margin-right: 225px;
-    margin-bottom: 190px;
+      margin-left: 225px;
+      margin-right: 225px;
+      margin-bottom: 190px;
   }
   #second-section h5 {
-    font-size: 40px;
+      font-size: 40px;
   }
 
   #third-section .row {
-    padding: 0 150px;
-    margin: 150px 0;
+      padding: 0 150px;
+      margin: 150px 0;
   }
 
   #fifth-section {
-    padding-bottom: 120px;
+      padding-bottom: 120px;
   }
 
   #sixth-section h4 {
-    margin-bottom: 90px;
+      margin-bottom: 90px;
   }
   #sixth-section p {
-    font-size: 29px;
+      font-size: 29px;
   }
 }
 @media (min-width: 1440px) {
   #first-section .ct-to-invite {
-    padding-top: 50px;
-    /* padding-bottom: 420px; */
+      padding-top: 50px;
+      /* padding-bottom: 420px; */
   }
   #first-section p {
-    margin-bottom: 100px;
+      margin-bottom: 100px;
   }
   #first-section h1 {
-    margin-bottom: 100px;
+      margin-bottom: 100px;
   }
   #first-section strong {
-    font-size: 60.5px;
+      font-size: 60.5px;
   }
 
   #second-section {
-    /* padding-bottom: 168px; */
+      /* padding-bottom: 168px; */
   }
   #second-section h5 {
-    font-size: 55.5px;
+      font-size: 55.5px;
   }
 
   #third-section .row {
-    padding: 0 200px;
-    margin: 150px 0;
+      padding: 0 200px;
+      margin: 150px 0;
   }
 }
 @media (min-width: 1920px) {
   #first-section .ct-to-invite {
-    padding-top: 50px;
-    /* padding-bottom: 530px; */
+      padding-top: 50px;
+      /* padding-bottom: 530px; */
   }
 }
 
