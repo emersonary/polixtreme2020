@@ -1,27 +1,27 @@
-import zlib from 'react-zlib-js';
-import axios from 'axios';
-import {Buffer} from 'buffer';
+import zlib from "react-zlib-js";
+import axios from "axios";
+import { Buffer } from "buffer";
 
 export default async function api(doc, json) {
-  const cmpr = zlib.deflateSync(JSON.stringify(json)).toString('base64');
+  const cmpr = zlib.deflateSync(JSON.stringify(json)).toString("base64");
 
   let returndata = null;
 
-  const data = {crpt: cmpr};
+  const data = { crpt: cmpr };
 
   await axios
-    .post('http://ws-1.polishop.com/msgbroker/wk/dev_emerson/' + doc, data, {
+    .post("http://ws-1.polishop.com/msgbroker/wk/dev_clovis/" + doc, data, {
       timeout: 30000,
     })
-    .then(response => {
+    .then((response) => {
       if (!response.data.crpt) {
         returndata = response.data;
       } else {
-        const buf = Buffer.from(response.data.crpt, 'base64');
+        const buf = Buffer.from(response.data.crpt, "base64");
         returndata = JSON.parse(zlib.inflateSync(buf).toString());
       }
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err.message);
       return null;
       //this.state.connectionerror = true;

@@ -23,6 +23,19 @@ body,
   background: red;
 }
 
+.InfoTextWarp {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 5px;
+}
+
+.InfoText {
+  align-self: flex-start;
+  text-align: left;
+  font-size: 12px;
+  margin-top: 4px;
+}
 .polixtream {
   margin-bottom: 100px;
 }

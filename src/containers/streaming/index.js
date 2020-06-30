@@ -155,6 +155,7 @@ class Streaming extends Component {
       password: null,
       token: null,
       grantlevel: null,
+      nosorte: null,
       auth: null,
       idvip: null,
       nick: null,
@@ -163,6 +164,7 @@ class Streaming extends Component {
       errorsessao: false,
       streamingsrc: null,
       titulo: null,
+      nosorte: null,
       formErrors: {
         email: "",
         password: "",
@@ -190,6 +192,7 @@ class Streaming extends Component {
         errorauth: !res.auth,
         grantlevel: res.grantlevel,
         titulo: res.titulo,
+        nosorte: res.nosorte,
         streamingsrc: res.streamingsrc,
         errorsessao: false,
         idvip: res.idvip,
@@ -248,6 +251,7 @@ class Streaming extends Component {
       errorauth: false,
       streamingsrc: null,
       titulo: null,
+      nosorte: null,
       formErrors: {
         email: "",
         password: "",
@@ -282,6 +286,7 @@ class Streaming extends Component {
           errorauth: !res.auth,
           grantlevel: res.grantlevel,
           titulo: res.titulo,
+          nosorte: res.nosorte,
           streamingsrc: res.streamingsrc,
           errorsessao: !sessionid && res.auth,
           idvip: res.idvip,
@@ -376,7 +381,10 @@ class Streaming extends Component {
         <div className="header">
           <div className="hdrleft">
             <img src={img_smallpolixtream2020} alt="" />
-            <a>Streaming: {this.state.titulo}</a>
+            <div className="InfoTextWarp">
+              <div className="InfoText">Streaming: {this.state.titulo}</div>
+              <div className="InfoText">No. da Sorte: {this.state.nosorte}</div>
+            </div>
           </div>
           <div className="hdrright">
             <a>{this.state.nick}</a>
