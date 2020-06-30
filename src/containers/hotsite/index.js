@@ -10,7 +10,7 @@ import {
   AccordionItemHeading,
   AccordionItemButton,
   AccordionItemPanel,
-} from 'react-accessible-accordion';
+} from "react-accessible-accordion";
 import ConsultaConvite from "./ConsultaConvite";
 
 // Random component
@@ -21,18 +21,24 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
   if (completed) {
     // Render a completed state
     //return <Completionist />;
-    return <a href="../../streaming">
-            <div align="center"><img
-              className="button"
-              src={require("../../assets/btn-assistir-live.png")}
-              alt="Entrar para Assistir a Live."
-            /></div>
-            </a>
+    return (
+      <a href="../../streaming">
+        <div align="center">
+          <img
+            className="button"
+            src={require("../../assets/btn-assistir-live.png")}
+            alt="Entrar para Assistir a Live."
+          />
+        </div>
+      </a>
+    );
   } else {
     // Render a countdown
     return (
       <h1>
-        Faltam {days} dias e {hours}hs{minutes}m{seconds}s
+        Faltam {days} dias, {hours} {hours === 1 ? "hora" : "horas"} {minutes}{" "}
+        {hours === 1 ? "minuto" : "minutos"} e {seconds}{" "}
+        {hours === 1 ? "segundo" : "segundos"}
       </h1>
     );
   }
@@ -41,45 +47,158 @@ const renderer = ({ days, hours, minutes, seconds, completed }) => {
 export default function Hotsite() {
   const faq = [
     {
-      question: <p>Possuo credencial dos eventos TRANSFORMANDO VIDAS 2020 CAMPINAS e LEADERSHIP SUMMIT e não localizo o APP do evento na APP STORE.</p>,
-      answer: <p>Em breve dispositivos com iOS estarão habilitados para receberem o APP PoliXtreme. Enquanto isso, para garantir garanta a sua participação enviando uma foto da sua credencial para o WhatsAPP do PoliXtreme com os dados para cadasto – ID (primeiro titular do ID), CPF e E-MAIL.</p>
+      question: (
+        <p>
+          Possuo credencial dos eventos TRANSFORMANDO VIDAS 2020
+          CAMPINAS e LEADERSHIP SUMMIT e não localizo o APP do evento na APP
+          STORE.
+        </p>
+      ),
+      answer: (
+        <p>
+          Em breve dispositivos com iOS estarão habilitados para receberem o APP
+          PoliXtreme. Enquanto isso, para garantir garanta a sua participação
+          enviando uma foto da sua credencial para o WhatsAPP do PoliXtreme com
+          os dados para cadasto – ID (primeiro titular do ID), CPF e E-MAIL.
+        </p>
+      ),
     },
     {
       question: <p>Não consigo cadastrar a minha credencial.</p>,
-      answer: <p>Verifique se o CPF utilizado foi o do 1º titular do contrato de Empreendedor. Caso persista o erro, entre em contato com a equipe de atendimento via WhatsApp informando qual o erro que consta na tela.</p>
+      answer: (
+        <p>
+          Verifique se o CPF utilizado foi o do 1º titular do contrato de
+          Empreendedor. Caso persista o erro, entre em contato com a equipe de
+          atendimento via WhatsApp informando qual o erro que consta na tela.
+        </p>
+      ),
     },
     {
-      question: <p>Fiz o cadastro e optei pagar com BOLETO. Posso trocar por CARTÃO?</p>,
-      answer: <p>Para solicitar a troca da forma de pagamento, orientamos que entre em contato com a Central de Atendimento.</p>
+      question: (
+        <p>Fiz o cadastro e optei pagar com BOLETO. Posso trocar por CARTÃO?</p>
+      ),
+      answer: (
+        <p>
+          Para solicitar a troca da forma de pagamento, orientamos que entre em
+          contato com a Central de Atendimento.
+        </p>
+      ),
     },
     {
-      question: <p>Em quanto tempo depois que tiver cadastrado meu convite pelo APP eu verei meus créditos no MyOffice?</p>,
-      answer: <p>Imediato, logo que finalizar cadastro já receberá no seu email indicado, o Login e senha de acesso, assim como seus créditos, por isso, logo que finalizado, os CRÉDITOS E CONVITES SÃO INTRANSFERÍVEIS.</p>
+      question: (
+        <p>
+          Em quanto tempo depois que tiver cadastrado meu convite pelo APP eu
+          verei meus créditos no MyOffice?
+        </p>
+      ),
+      answer: (
+        <p>
+          Imediato, logo que finalizar cadastro já receberá no seu email
+          indicado, o Login e senha de acesso, assim como seus créditos, por
+          isso, logo que finalizado, os CRÉDITOS E CONVITES SÃO INTRANSFERÍVEIS.
+        </p>
+      ),
     },
     {
-      question: <p>Onde e quando estará disponível para usar o meu crédito das credenciais eventos TRANSFORMANDO VIDAS 2020 CAMPINAS ou LEADERSHIP SUMMIT?</p>,
-      answer: <p>O crédito será disponibilizado no formato de cartão virtual e ficará armazenado no MyOffice, na aba Financeiro. A utilização desse crédito será liberado no dia do evento.</p>
+      question: (
+        <p>
+          Onde e quando estará disponível para usar o meu crédito das
+          credenciais eventos TRANSFORMANDO VIDAS 2020 CAMPINAS ou LEADERSHIP
+          SUMMIT?
+        </p>
+      ),
+      answer: (
+        <p>
+          O crédito será disponibilizado no formato de cartão virtual e ficará
+          armazenado no MyOffice, na aba Financeiro. A utilização desse crédito
+          será liberado no dia do evento.
+        </p>
+      ),
     },
     {
-      question: <p>Cadastrei meu convite através do APP e vejo, no MyOffice aba Financeiro, que já tenho liberado o meu crédito. Já posso usar o crédito?</p>,
-      answer: <p>Não. Este crédito só estará habilitado para uso no dia da convenção para comprar as Ofertas Exclusivas que serão anunciadas no dia.</p>
+      question: (
+        <p>
+          Cadastrei meu convite através do APP e vejo, no MyOffice aba
+          Financeiro, que já tenho liberado o meu crédito. Já posso usar o
+          crédito?
+        </p>
+      ),
+      answer: (
+        <p>
+          Não. Este crédito só estará habilitado para uso no dia da
+          convenção para comprar as Ofertas Exclusivas que serão anunciadas no
+          dia.
+        </p>
+      ),
     },
     {
-      question: <p>Fiz um cadastro e preciso ter 02 acessos ao evento. Como eu faço?</p>,
-      answer: <p>É permitido inscrever apenas 1 (um) login e senha em cada credencial, sendo o acesso pessoal e intransferível. Neste caso, orientamos a compra de um convite online para gerar um novo login e senha para o segundo usuário.</p>
+      question: (
+        <p>Fiz um cadastro e preciso ter 02 acessos ao evento. Como eu faço?</p>
+      ),
+      answer: (
+        <p>
+          É permitido inscrever apenas 1 (um) login e senha em cada credencial,
+          sendo o acesso pessoal e intransferível. Neste caso, orientamos a
+          compra de um convite online para gerar um novo login e senha para o
+          segundo usuário.
+        </p>
+      ),
     },
     {
-      question: <p>Estava com meu cadastro cancelado e logo que recebi a carta do presidente João Appolinário comprei o convite, mas no meu pedido consta o ID da POLISHOP. Quando o meu ID estará ativo para poder comprar produtos?</p>,
-      answer: <p>O seu ID será ativado assim que o sistema confirmar o pagamento.</p>
+      question: (
+        <p>
+          Estava com meu cadastro cancelado e logo que recebi a carta do
+          presidente João Appolinário comprei o convite, mas no meu pedido
+          consta o ID da POLISHOP. Quando o meu ID estará ativo para poder
+          comprar produtos?
+        </p>
+      ),
+      answer: (
+        <p>O seu ID será ativado assim que o sistema confirmar o pagamento.</p>
+      ),
     },
     {
-      question: <p>Comprei o convite, mas ainda não recebi email de confirmação com o link, login e senha. O que faço?</p>,
-      answer: <p>Verifique sua caixa de SPAM ou PROMOÇÕES. Caso persista, mande email para <a href="mailto:polixtreme@polishop.com.br">polixtreme@polishop.com.br</a>.</p>
+      question: (
+        <p>
+          Comprei o convite, mas ainda não recebi email de confirmação com o
+          link, login e senha. O que faço?
+        </p>
+      ),
+      answer: (
+        <p>
+          Verifique sua caixa de SPAM ou PROMOÇÕES. Caso persista, mande email
+          para{" "}
+          <a href="mailto:polixtreme@polishop.com.br">
+            polixtreme@polishop.com.br
+          </a>
+          .
+        </p>
+      ),
     },
     {
-      question: <p>Tenho credencial do Transformando Vidas Campinas e do Leadership Summit. Se eu me inscrever com os 2 convites receberei R$ 900,00 de crédito?</p>,
-      answer: <p>Não, o valor máximo que um ID receberá de crédito será de <b>R$ 600,00 para o convite Leadership Summit</b> e R$ <b>300,00 para o convite Transformando Vidas 2020 Campinas</b>. Se usar o convite Transformando Vidas 2020 Campinas para se inscrever e depois usar o Leadership Summit para se inscrever no PoliXtreme Summit, <b>o sistema considerará o de maior valor, ou seja, crédito de R$ 600,00.</b></p>
-    }];
+      question: (
+        <p>
+          Tenho credencial do Transformando Vidas Campinas e do Leadership
+          Summit. Se eu me inscrever com os 2 convites receberei R$ 900,00 de
+          crédito?
+        </p>
+      ),
+      answer: (
+        <p>
+          Não, o valor máximo que um ID receberá de crédito será de{" "}
+          <b>R$ 600,00 para o convite Leadership Summit</b> e R${" "}
+          <b>300,00 para o convite Transformando Vidas 2020 Campinas</b>. Se
+          usar o convite Transformando Vidas 2020 Campinas para se inscrever e
+          depois usar o Leadership Summit para se inscrever no PoliXtreme
+          Summit,{" "}
+          <b>
+            o sistema considerará o de maior valor, ou seja, crédito de R$
+            600,00.
+          </b>
+        </p>
+      ),
+    },
+  ];
   return (
     <main>
       <Helmet>
@@ -109,12 +228,12 @@ export default function Hotsite() {
               A mesma oportunidade
               <br />
               realizada de maneira diferente!
-            </p> 
+            </p>
             <Countdown
               date={new Date(2020, 6, 4, 12, 0, 0, 0)}
               renderer={renderer}
             />
-            
+
             <iframe
               width="800"
               height="500"
@@ -131,7 +250,10 @@ export default function Hotsite() {
               <strong className="uppercase">04 de julho de 2020</strong>
             </h1>
           </div>
-          <a href="https://www.polishop.vc/convite?&utmi_p=_store_polishop&utmi_pc=BuscaFullText&utmi_cp=convite&utm_source=PolishopComVC&utm_campaign=23917&utm_medium=polishop" target="_blank">
+          <a
+            href="https://www.polishop.vc/convite?&utmi_p=_store_polishop&utmi_pc=BuscaFullText&utmi_cp=convite&utm_source=PolishopComVC&utm_campaign=23917&utm_medium=polishop"
+            target="_blank"
+          >
             <img
               className="button"
               src={require("../../assets/btn-quero.png")}
@@ -260,7 +382,10 @@ export default function Hotsite() {
           src={require("../../assets/bg-x.png")}
           alt="Comprar meu convite agora"
         />
-        <a href="https://www.polishop.vc/convite?&utmi_p=_store_polishop&utmi_pc=BuscaFullText&utmi_cp=convite&utm_source=PolishopComVC&utm_campaign=23917&utm_medium=polishop" target="_blank">
+        <a
+          href="https://www.polishop.vc/convite?&utmi_p=_store_polishop&utmi_pc=BuscaFullText&utmi_cp=convite&utm_source=PolishopComVC&utm_campaign=23917&utm_medium=polishop"
+          target="_blank"
+        >
           <img
             className="button"
             src={require("../../assets/btn-comprar.png")}
@@ -494,13 +619,9 @@ export default function Hotsite() {
                   />
                 </a> */}
                 <p className="txt-final">
-                  Para cadastrar seu convite Transformando Vidas ou Leadership Summit, baixe o
-                  {' '}
-                  <b>
-                    APP POLIXTREME
-                  </b>
-                  {' '}
-                  na loja da App Store ou Play Store e siga o passo a passo.
+                  Para cadastrar seu convite Transformando Vidas ou Leadership
+                  Summit, baixe o <b>APP POLIXTREME</b> na loja da App Store ou
+                  Play Store e siga o passo a passo.
                 </p>
               </div>
               <div className="row">
@@ -510,9 +631,14 @@ export default function Hotsite() {
                       src={require("../../assets/button-app-store.png")}
                       alt="flash"
                     />
-                    <div className="soon-label"><span>Em breve</span></div>
+                    <div className="soon-label">
+                      <span>Em breve</span>
+                    </div>
                   </a>
-                  <a href="https://play.google.com/store/apps/details?id=com.polixtreme2020&hl=en" target="_blank">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.polixtreme2020&hl=en"
+                    target="_blank"
+                  >
                     <img
                       src={require("../../assets/button-google-play.png")}
                       alt="flash"
@@ -522,13 +648,19 @@ export default function Hotsite() {
               </div>
               <div className="row">
                 <p className="txt-final txt-final-02">
-                Caso tenha dúvidas de como usar o aplicativo para cadastrar seu convite ou sobre a utilização do crédito,
-                  {' '}
-                  <a href="https://s3.amazonaws.com/myoffice-files.polishop.com/materiais/normas_regras/PASSOaPASSO_CADASTRO.pdf" target="_blank">
+                  Caso tenha dúvidas de como usar o aplicativo para cadastrar
+                  seu convite ou sobre a utilização do crédito,{" "}
+                  <a
+                    href="https://s3.amazonaws.com/myoffice-files.polishop.com/materiais/normas_regras/PASSOaPASSO_CADASTRO.pdf"
+                    target="_blank"
+                  >
                     CLIQUE AQUI
-                  </a>
-                  {' '}
-                  se ainda tiver dúvidas, entrar em contato através do email <a href="mailto:polixtreme@polishop.com.br">polixtreme@polishop.com.br</a> ou via Whatsapp no 11 96377-8262.
+                  </a>{" "}
+                  se ainda tiver dúvidas, entrar em contato através do email{" "}
+                  <a href="mailto:polixtreme@polishop.com.br">
+                    polixtreme@polishop.com.br
+                  </a>{" "}
+                  ou via Whatsapp no 11 96377-8262.
                   <ConsultaConvite></ConsultaConvite>
                 </p>
               </div>
@@ -542,25 +674,21 @@ export default function Hotsite() {
             <strong>Dúvidas Frequentes</strong>
           </h4>
           <img
-              className="flash-img"
-              src={require("../../assets/flash-faq.jpg")}
-              alt="flash"
-            />
+            className="flash-img"
+            src={require("../../assets/flash-faq.jpg")}
+            alt="flash"
+          />
           <Accordion allowZeroExpanded={true}>
-            {faq.map(faq => (
+            {faq.map((faq) => (
               <AccordionItem>
                 <AccordionItemHeading>
-                    <AccordionItemButton>
-                      {faq.question}
-                    </AccordionItemButton>
+                  <AccordionItemButton>{faq.question}</AccordionItemButton>
                 </AccordionItemHeading>
-                <AccordionItemPanel>
-                  {faq.answer}
-                </AccordionItemPanel>
+                <AccordionItemPanel>{faq.answer}</AccordionItemPanel>
               </AccordionItem>
             ))}
-            </Accordion>
-          </div>
+          </Accordion>
+        </div>
       </section>
     </main>
   );
