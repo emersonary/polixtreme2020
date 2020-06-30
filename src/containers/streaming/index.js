@@ -37,10 +37,12 @@ function descriptstate(data) {
 async function iniciasessao(username, state) {
   let returndata = null;
 
-  console.log("post", "https://ws-1.polishop.com/psm/sessoes/teste1", {
+  /*console.log("post", "https://ws-1.polishop.com/psm/sessoes/teste1", 
+  {
     id: username,
     data: state,
-  });
+  }
+  );*/
 
   await axios
     .post(
@@ -51,13 +53,13 @@ async function iniciasessao(username, state) {
       }
     )
     .then((response) => {
-      console.log(response);
+      //console.log(response);
       if (response.status === 200) {
         returndata = response.data.session;
       }
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       return null;
     });
 
@@ -67,23 +69,23 @@ async function iniciasessao(username, state) {
 async function terminarsessao(sessionid) {
   let returndata = null;
 
-  console.log(
+  /*console.log(
     "delete",
     "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
-  );
+  );*/
 
   await axios
     .delete("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, {
       timeout: 30000,
     })
     .then((response) => {
-      console.log(response);
+     // console.log(response);
       if (response.status === 204) {
         returndata = true;
       }
     })
     .catch((err) => {
-      console.log(err);
+     // console.log(err);
       return null;
     });
 
@@ -93,23 +95,23 @@ async function terminarsessao(sessionid) {
 async function refreshsessao(sessionid) {
   let returndata = null;
 
-  console.log(
+  /*console.log(
     "put",
     "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
-  );
+  );*/
 
   await axios
     .put("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
       timeout: 30000,
     })
     .then((response) => {
-      console.log(response);
+      //console.log(response);
       if (response.status === 200) {
         returndata = response.data.session;
       }
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       return null;
     });
 
@@ -119,23 +121,23 @@ async function refreshsessao(sessionid) {
 async function getres(sessionid) {
   let returndata = null;
 
-  console.log(
+  /*console.log(
     "get",
     "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
-  );
+  );*/
 
   await axios
     .get("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
       timeout: 30000,
     })
     .then((response) => {
-      console.log(response);
+     // console.log(response);
       if (response.status === 200) {
         returndata = response.data.data;
       }
     })
     .catch((err) => {
-      console.log(err);
+      //console.log(err);
       return null;
     });
 
