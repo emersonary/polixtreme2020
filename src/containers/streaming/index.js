@@ -79,13 +79,13 @@ async function terminarsessao(sessionid) {
       timeout: 30000,
     })
     .then((response) => {
-     // console.log(response);
+      // console.log(response);
       if (response.status === 204) {
         returndata = true;
       }
     })
     .catch((err) => {
-     // console.log(err);
+      // console.log(err);
       return null;
     });
 
@@ -131,7 +131,7 @@ async function getres(sessionid) {
       timeout: 30000,
     })
     .then((response) => {
-     // console.log(response);
+      // console.log(response);
       if (response.status === 200) {
         returndata = response.data.data;
       }
@@ -166,7 +166,7 @@ class Streaming extends Component {
       errorsessao: false,
       streamingsrc: null,
       titulo: null,
-      nosorte: null,
+      superuser: null,
       formErrors: {
         email: "",
         password: "",
@@ -195,6 +195,7 @@ class Streaming extends Component {
         grantlevel: res.grantlevel,
         titulo: res.titulo,
         nosorte: res.nosorte,
+        superuser: res.superuser,
         streamingsrc: res.streamingsrc,
         errorsessao: false,
         idvip: res.idvip,
@@ -224,22 +225,25 @@ class Streaming extends Component {
   };
 
   handleRefresh = async () => {
-    const { cookies } = this.props;
-    const newsessionid = await refreshsessao(cookies.get("sessionid"));
+    if (!this.state.superuser) {
+      const { cookies } = this.props;
+      const newsessionid = await refreshsessao(cookies.get("sessionid"));
 
-    if (newsessionid) {
-      cookies.set("sessionid", newsessionid, { path: "/" });
+      if (newsessionid) {
+        cookies.set("sessionid", newsessionid, { path: "/" });
+      }
     }
   };
 
   handleLogout = async () => {
-    clearTimeout(TimeOutVar);
-    const { cookies } = this.props;
+    if (!this.state.superuser) {
+      clearTimeout(TimeOutVar);
+      const { cookies } = this.props;
 
-    await terminarsessao(cookies.get("sessionid"));
-    cookies.set("sessionid", null, { path: "/" });
-    cookies.set("state", null, { path: "/" });
-
+      await terminarsessao(cookies.get("sessionid"));
+      cookies.set("sessionid", null, { path: "/" });
+      cookies.set("state", null, { path: "/" });
+    }
     this.setState({
       email: null,
       password: null,
@@ -254,6 +258,7 @@ class Streaming extends Component {
       streamingsrc: null,
       titulo: null,
       nosorte: null,
+      superuser: null,
       formErrors: {
         email: "",
         password: "",
@@ -279,16 +284,20 @@ class Streaming extends Component {
       });
 
       if (res) {
-        const sessionid = res.auth
-          ? await iniciasessao(email, encriptstate(res))
-          : null;
+        const sessionid =
+          res.auth && !res.superuser
+            ? await iniciasessao(email, encriptstate(res))
+            : !res.superuser
+            ? null
+            : "1234";
 
         const state = {
-          auth: res.auth && !!sessionid,
+          auth: res.auth && (!!sessionid || !res.superuser),
           errorauth: !res.auth,
           grantlevel: res.grantlevel,
           titulo: res.titulo,
           nosorte: res.nosorte,
+          superuser: res.superuser,
           streamingsrc: res.streamingsrc,
           errorsessao: !sessionid && res.auth,
           idvip: res.idvip,
@@ -296,12 +305,13 @@ class Streaming extends Component {
           nome: res.nome,
         };
 
-        const { cookies } = this.props;
-
-        if (res.auth && sessionid) {
-          cookies.set("sessionid", sessionid, { path: "/" });
-        } else {
-          cookies.set("sessionid", null, { path: "/" });
+        if (!res.superuser) {
+          const { cookies } = this.props;
+          if (res.auth && sessionid) {
+            cookies.set("sessionid", sessionid, { path: "/" });
+          } else {
+            cookies.set("sessionid", null, { path: "/" });
+          }
         }
 
         this.setState(state);
@@ -375,8 +385,8 @@ class Streaming extends Component {
   };
 
   StreamScreen = () => {
-    if (this.state.auth) {
-      TimeOutVar = setTimeout(this.handleRefresh, 5000);
+    if (this.state.auth && !this.state.superuser) {
+      TimeOutVar = setTimeout(this.handleRefresh, 1000 * 60 * 4);
     }
     return (
       <div className="streaming">
@@ -385,7 +395,12 @@ class Streaming extends Component {
             <img src={img_smallpolixtream2020} alt="" />
             <div className="InfoTextWarp">
               <div className="InfoText">Streaming: {this.state.titulo}</div>
-              <div className="InfoText">No. da Sorte: {this.state.nosorte}</div>
+
+              {this.state.nosorte > 0 && (
+                <div className="InfoText">
+                  No. da Sorte: {this.state.nosorte}
+                </div>
+              )}
             </div>
           </div>
           <div className="hdrright">
