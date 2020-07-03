@@ -10,7 +10,7 @@ export default async function api(doc, json) {
   const data = { crpt: cmpr };
 
   await axios
-    .post("http://ws-1.polishop.com/msgbroker/wk/dev_clovis/" + doc, data, {
+    .post("http://ws-1.polishop.com/msgbroker/wk/dev_emerson/" + doc, data, {
       timeout: 30000,
     })
     .then((response) => {
