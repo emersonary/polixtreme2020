@@ -4,14 +4,17 @@ import api from "../../services/api";
 import axios from "axios";
 import zlib from "react-zlib-js";
 import { instanceOf } from "prop-types";
-import { withCookies, Cookies } from "react-cookie";
+// import { withCookies, Cookies } from "react-cookie";
 
 import img_polixtream from "../../assets/polixtream.png";
 import img_smallpolixtream2020 from "../../assets/small_polixtream2020.png";
 
+import sha256 from "crypto-js/sha256";
+import { WebMatrixEncrypt, WebMatrixDecrypt } from "../../services/webmatrix";
+
 // const emailRegex = RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
 
-let TimeOutVar = null;
+// let TimeOutVar = null;
 
 const formValid = (formErrors) => {
   let valid = true;
@@ -34,120 +37,120 @@ function descriptstate(data) {
   } else return null;
 }
 
-async function iniciasessao(username, state) {
-  let returndata = null;
+// async function iniciasessao(username, state) {
+//   let returndata = null;
 
-  /*console.log("post", "https://ws-1.polishop.com/psm/sessoes/teste1", 
-  {
-    id: username,
-    data: state,
-  }
-  );*/
+//   /*console.log("post", "https://ws-1.polishop.com/psm/sessoes/teste1",
+//   {
+//     id: username,
+//     data: state,
+//   }
+//   );*/
 
-  await axios
-    .post(
-      "https://ws-1.polishop.com/psm/sessoes/teste1",
-      { id: username.toUpperCase(), data: state },
-      {
-        timeout: 30000,
-      }
-    )
-    .then((response) => {
-      //console.log(response);
-      if (response.status === 200) {
-        returndata = response.data.session;
-      }
-    })
-    .catch((err) => {
-      //console.log(err);
-      return null;
-    });
+//   await axios
+//     .post(
+//       "https://ws-1.polishop.com/psm/sessoes/teste1",
+//       { id: username.toUpperCase(), data: state },
+//       {
+//         timeout: 30000,
+//       }
+//     )
+//     .then((response) => {
+//       //console.log(response);
+//       if (response.status === 200) {
+//         returndata = response.data.session;
+//       }
+//     })
+//     .catch((err) => {
+//       //console.log(err);
+//       return null;
+//     });
 
-  return returndata;
-}
+//   return returndata;
+// }
 
-async function terminarsessao(sessionid) {
-  let returndata = null;
+// async function terminarsessao(sessionid) {
+//   let returndata = null;
 
-  /*console.log(
-    "delete",
-    "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
-  );*/
+//   /*console.log(
+//     "delete",
+//     "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
+//   );*/
 
-  await axios
-    .delete("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, {
-      timeout: 30000,
-    })
-    .then((response) => {
-      // console.log(response);
-      if (response.status === 204) {
-        returndata = true;
-      }
-    })
-    .catch((err) => {
-      // console.log(err);
-      return null;
-    });
+//   await axios
+//     .delete("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, {
+//       timeout: 30000,
+//     })
+//     .then((response) => {
+//       // console.log(response);
+//       if (response.status === 204) {
+//         returndata = true;
+//       }
+//     })
+//     .catch((err) => {
+//       // console.log(err);
+//       return null;
+//     });
 
-  return returndata;
-}
+//   return returndata;
+// }
 
-async function refreshsessao(sessionid) {
-  let returndata = null;
+// async function refreshsessao(sessionid) {
+//   let returndata = null;
 
-  /*console.log(
-    "put",
-    "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
-  );*/
+//   /*console.log(
+//     "put",
+//     "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
+//   );*/
 
-  await axios
-    .put("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
-      timeout: 30000,
-    })
-    .then((response) => {
-      //console.log(response);
-      if (response.status === 200) {
-        returndata = response.data.session;
-      }
-    })
-    .catch((err) => {
-      //console.log(err);
-      return null;
-    });
+//   await axios
+//     .put("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
+//       timeout: 30000,
+//     })
+//     .then((response) => {
+//       //console.log(response);
+//       if (response.status === 200) {
+//         returndata = response.data.session;
+//       }
+//     })
+//     .catch((err) => {
+//       //console.log(err);
+//       return null;
+//     });
 
-  return returndata;
-}
+//   return returndata;
+// }
 
-async function getres(sessionid) {
-  let returndata = null;
+// async function getres(sessionid) {
+//   let returndata = null;
 
-  /*console.log(
-    "get",
-    "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
-  );*/
+//   /*console.log(
+//     "get",
+//     "https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid
+//   );*/
 
-  await axios
-    .get("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
-      timeout: 30000,
-    })
-    .then((response) => {
-      // console.log(response);
-      if (response.status === 200) {
-        returndata = response.data.data;
-      }
-    })
-    .catch((err) => {
-      //console.log(err);
-      return null;
-    });
+//   await axios
+//     .get("https://ws-1.polishop.com/psm/sessoes/teste1/" + sessionid, null, {
+//       timeout: 30000,
+//     })
+//     .then((response) => {
+//       // console.log(response);
+//       if (response.status === 200) {
+//         returndata = response.data.data;
+//       }
+//     })
+//     .catch((err) => {
+//       //console.log(err);
+//       return null;
+//     });
 
-  return returndata;
-}
+//   return returndata;
+// }
 
 class Streaming extends Component {
-  static propTypes = {
-    cookies: instanceOf(Cookies).isRequired,
-  };
+  // static propTypes = {
+  //   cookies: instanceOf(Cookies).isRequired,
+  // };
 
   constructor(props) {
     super(props);
@@ -158,7 +161,7 @@ class Streaming extends Component {
       token: null,
       grantlevel: null,
       nosorte: null,
-      auth: null,
+      auth: false,
       idvip: null,
       nick: null,
       nome: null,
@@ -174,40 +177,40 @@ class Streaming extends Component {
     };
   }
 
-  UNSAFE_componentWillMount = async () => {
-    const { cookies } = this.props;
+  // UNSAFE_componentWillMount = async () => {
+  //   const { cookies } = this.props;
 
-    let res = null;
+  //   let res = null;
 
-    const sessionid = cookies.get("sessionid");
+  //   const sessionid = cookies.get("sessionid");
 
-    if (sessionid && sessionid !== "null") {
-      res = descriptstate(await getres(sessionid));
+  //   if (sessionid && sessionid !== "null") {
+  //     res = descriptstate(await getres(sessionid));
 
-      if (!res) {
-        cookies.set("sessionid", null, { path: "/" });
-      }
-    }
-    if (res) {
-      this.setState({
-        auth: res.auth,
-        errorauth: !res.auth,
-        grantlevel: res.grantlevel,
-        titulo: res.titulo,
-        nosorte: res.nosorte,
-        superuser: res.superuser,
-        streamingsrc: res.streamingsrc,
-        errorsessao: false,
-        idvip: res.idvip,
-        nick: res.nick,
-        nome: res.nome,
-      });
-    } else
-      this.setState({
-        auth: false,
-        errorsessao: false,
-      });
-  };
+  //     if (!res) {
+  //       cookies.set("sessionid", null, { path: "/" });
+  //     }
+  //   }
+  //   if (res) {
+  //     this.setState({
+  //       auth: res.auth,
+  //       errorauth: !res.auth,
+  //       grantlevel: res.grantlevel,
+  //       titulo: res.titulo,
+  //       nosorte: res.nosorte,
+  //       superuser: res.superuser,
+  //       streamingsrc: res.streamingsrc,
+  //       errorsessao: false,
+  //       idvip: res.idvip,
+  //       nick: res.nick,
+  //       nome: res.nome,
+  //     });
+  //   } else
+  //     this.setState({
+  //       auth: false,
+  //       errorsessao: false,
+  //     });
+  // };
 
   handleChange = (e) => {
     const { name, value } = e.target;
@@ -224,47 +227,47 @@ class Streaming extends Component {
       password == null || password.length < 3 ? "Senha Inválida" : "";
   };
 
-  handleRefresh = async () => {
-    if (!this.state.superuser) {
-      const { cookies } = this.props;
-      const newsessionid = await refreshsessao(cookies.get("sessionid"));
+  // handleRefresh = async () => {
+  //   if (!this.state.superuser) {
+  //     const { cookies } = this.props;
+  //     const newsessionid = await refreshsessao(cookies.get("sessionid"));
 
-      if (newsessionid) {
-        cookies.set("sessionid", newsessionid, { path: "/" });
-      }
-    }
-  };
+  //     if (newsessionid) {
+  //       cookies.set("sessionid", newsessionid, { path: "/" });
+  //     }
+  //   }
+  // };
 
-  handleLogout = async () => {
-    if (!this.state.superuser) {
-      clearTimeout(TimeOutVar);
-      const { cookies } = this.props;
+  // handleLogout = async () => {
+  //   if (!this.state.superuser) {
+  //     clearTimeout(TimeOutVar);
+  //     const { cookies } = this.props;
 
-      await terminarsessao(cookies.get("sessionid"));
-      cookies.set("sessionid", null, { path: "/" });
-      cookies.set("state", null, { path: "/" });
-    }
-    this.setState({
-      email: null,
-      password: null,
-      token: null,
-      grantlevel: null,
-      auth: false,
-      errorsessao: false,
-      idvip: null,
-      nick: null,
-      nome: null,
-      errorauth: false,
-      streamingsrc: null,
-      titulo: null,
-      nosorte: null,
-      superuser: null,
-      formErrors: {
-        email: "",
-        password: "",
-      },
-    });
-  };
+  //     await terminarsessao(cookies.get("sessionid"));
+  //     cookies.set("sessionid", null, { path: "/" });
+  //     cookies.set("state", null, { path: "/" });
+  //   }
+  //   this.setState({
+  //     email: null,
+  //     password: null,
+  //     token: null,
+  //     grantlevel: null,
+  //     auth: false,
+  //     errorsessao: false,
+  //     idvip: null,
+  //     nick: null,
+  //     nome: null,
+  //     errorauth: false,
+  //     streamingsrc: null,
+  //     titulo: null,
+  //     nosorte: null,
+  //     superuser: null,
+  //     formErrors: {
+  //       email: "",
+  //       password: "",
+  //     },
+  //   });
+  // };
 
   handleSubmit = async (e) => {
     e.preventDefault();
@@ -284,37 +287,44 @@ class Streaming extends Component {
       });
 
       if (res) {
-        const sessionid =
-          res.auth && !res.superuser
-            ? await iniciasessao(email, encriptstate(res))
-            : !res.superuser
-            ? null
-            : "1234";
+        // const sessionid =
+        //   res.auth && !res.superuser
+        //     ? await iniciasessao(email, encriptstate(res))
+        //     : !res.superuser
+        //     ? null
+        //     : "1234";
 
         const state = {
-          auth: res.auth && (!!sessionid || !res.superuser),
+          auth: res.auth,
+          // auth: res.auth && (!!sessionid || !res.superuser),
           errorauth: !res.auth,
           grantlevel: res.grantlevel,
           titulo: res.titulo,
           nosorte: res.nosorte,
           superuser: res.superuser,
           streamingsrc: res.streamingsrc,
-          errorsessao: !sessionid && res.auth,
+          // errorsessao: !sessionid && res.auth,
+          errorsessao: res.auth,
           idvip: res.idvip,
           nick: res.nick,
           nome: res.nome,
         };
 
-        if (!res.superuser) {
-          const { cookies } = this.props;
-          if (res.auth && sessionid) {
-            cookies.set("sessionid", sessionid, { path: "/" });
-          } else {
-            cookies.set("sessionid", null, { path: "/" });
-          }
-        }
+        // if (!res.superuser) {
+        //   const { cookies } = this.props;
+        //   if (res.auth && sessionid) {
+        //     cookies.set("sessionid", sessionid, { path: "/" });
+        //   } else {
+        //     cookies.set("sessionid", null, { path: "/" });
+        //   }
+        // }
 
-        this.setState(state);
+        console.log("auth", state.auth);
+        if (state.auth) {
+          this.StreamScreen(res.streamingsrc);
+        } else {
+          this.setState(state);
+        }
       }
     } else {
       console.error("FORM INVALIDA - DISPLAY ERROR MESSAGE ");
@@ -384,52 +394,85 @@ class Streaming extends Component {
     );
   };
 
-  StreamScreen = () => {
-    if (this.state.auth && !this.state.superuser) {
-      TimeOutVar = setTimeout(this.handleRefresh, 1000 * 60 * 4);
-    }
-    return (
-      <div className="streaming">
-        <div className="header">
-          <div className="hdrleft">
-            <img src={img_smallpolixtream2020} alt="" />
-            <div className="InfoTextWarp">
-              <div className="InfoText">Streaming: {this.state.titulo}</div>
+  StreamScreen = (psrc) => {
+    // if (this.state.auth && !this.state.superuser) {
+    //   TimeOutVar = setTimeout(this.handleRefresh, 1000 * 60 * 4);
+    // }
 
-              {this.state.nosorte > 0 && (
-                <div className="InfoText">
-                  No. da Sorte: {this.state.nosorte}
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="hdrright">
-            <a>{this.state.nick}</a>
-            <button onClick={this.handleLogout}>Logout</button>
-          </div>
-        </div>
-        <div className="client">
-          <script
-            type="text/javascript"
-            src="https://static.netshow.me/integration/embed.js"
-          ></script>
-          <iframe
-            allowFullScreen="yes"
-            frameBorder="0"
-            scrolling="yes"
-            src={this.state.streamingsrc}
-            width="100%"
-            height="100%"
-            title="straming_a"
-          ></iframe>
-        </div>
-      </div>
-    );
+    // const token = {
+    //   fullname: this.state.nome,
+    //   polishop_id: this.state.email,
+    //   event_id: this.state.grantlevel,
+    // };
+
+    const token = {
+      fullname: "EMERSON SANTOS",
+      polishop_id: "esantos2002",
+      event_id: this.state.grantlevel,
+      sair_href: "http://www.polishop.com.vc",
+    };
+
+    const tokenstr = WebMatrixEncrypt(token);
+
+    const signstr = sha256(tokenstr).toString();
+
+    const src =
+      psrc +
+      "?payload=" +
+      encodeURIComponent(tokenstr) +
+      "&sign=" +
+      encodeURIComponent(signstr);
+    console.log("src3", src);
+    console.log("token", token);
+
+    window.open(src, "_self");
+
+    // return (
+    //   <div className="streaming">
+    //     <div className="header">
+    //       <div className="hdrleft">
+    //         <img src={img_smallpolixtream2020} alt="" />
+    //         <div className="InfoTextWarp">
+    //           <div className="InfoText">Streaming: {this.state.titulo}</div>
+
+    //           {this.state.nosorte > 0 && (
+    //             <div className="InfoText">
+    //               No. da Sorte: {this.state.nosorte}
+    //             </div>
+    //           )}
+    //         </div>
+    //       </div>
+    //       <div className="hdrright">
+    //         <a>{this.state.nick}</a>
+    //         <button onClick={this.handleLogout}>Logout</button>
+    //       </div>
+    //     </div>
+    //     <div className="client">
+    //       <script
+    //         type="text/javascript"
+    //         src="https://static.netshow.me/integration/embed.js"
+    //       ></script>
+    //       <iframe
+    //         allowFullScreen="yes"
+    //         frameBorder="0"
+    //         scrolling="yes"
+    //         src={src}
+    //         width="100%"
+    //         height="100%"
+    //         title="straming_a"
+    //       ></iframe>
+    //     </div>
+    //   </div>
+    // );
   };
 
   render() {
-    return this.state.auth ? this.StreamScreen() : this.LoginScreen();
+    console.log("logged", this.state.auth);
+    return this.state.auth
+      ? this.StreamScreen(this.state.streamingsrc)
+      : this.LoginScreen();
   }
 }
 
-export default withCookies(Streaming);
+export default Streaming;
+// export default withCookies(Streaming);
