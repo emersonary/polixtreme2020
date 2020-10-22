@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap');
+
+
+.u-flex {
+  align-items: start;
+  display: flex;
+}
+
+.u-flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.u-flex-col--50 {
+  width: 50%;
+}
+
+.u-container {
+  display: block;
+  margin: auto;
+  max-width: 1040px;
+  width: 100%;
+}
+
+.u-uppercase {
+  text-transform: uppercase;
+}
+
+.u-red {
+  color: #ff4d64;
+}
+
+.u-button {
+  align-items: center;
+  background-color: #eb1f27;
+  border-radius: 10px;
+  color: #FFFFFF;
+  display: flex;
+  font-size: 19px;
+  font-weight: 300;
+  font-family: 'Encode Sans', sans-serif;
+  height: 94px;
+  justify-content: center;
+  max-width: 300px;
+  margin: 30px auto;
+  text-transform: uppercase;
+  text-decoration: none;
+  width: 100%;
+}
+
+.u-italic {
+  font-style: italic;
+}
+
+.u-center {
+  text-align: center;
+}
