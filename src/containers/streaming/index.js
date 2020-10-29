@@ -409,7 +409,7 @@ class Streaming extends Component {
       fullname: "EMERSON SANTOS",
       polishop_id: "esantos2002",
       event_id: this.state.grantlevel,
-      sair_href: "http://www.polishop.com.vc",
+      sair_href: "http://innovation2020.polishop.com",
     };
 
     const tokenstr = WebMatrixEncrypt(token);
