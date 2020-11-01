@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Helmet } from 'react-helmet';
 
-import "./index.css";
-import "./base.css";
+//import "./index.css";
+//import "./base.css";
 import './styles/index.scss';
 
 import Countdown from "react-countdown";
@@ -193,9 +193,9 @@ export default function Hotsite() {
           </div>
         </div>
         <Countdown
-              date={new Date(2020, 6, 4, 12, 0, 0, 0)}
+              date={new Date(2020, 10, 8, 12, 0, 0, 0)}
               renderer={renderer}
-            />
+        />
 
         <a href="#adquira-seu-convite" className="Intro-cta u-button">
           Faça a diferença e garanta já o seu convite!
@@ -511,7 +511,7 @@ export default function Hotsite() {
               />
             </div>
             <div className="Tickets-ticketGains">
-              <div className="Tickets-ticketGainsImgWrapper">
+              {/*<div className="Tickets-ticketGainsImgWrapper">
                 <p>
                   ganhe
                   <br />
@@ -528,7 +528,7 @@ export default function Hotsite() {
                 <small>
                   *Imagem meramente ilustrativa
                 </small>
-              </div>
+        </div>*/}
               <div className="Tickets-ticketGainsTexts">
                 <p>
                   <span className="u-uppercase">
@@ -561,26 +561,26 @@ export default function Hotsite() {
                 Convite Xperience 
               </p>
               <div className="Tickets-ticketTicketBody">
-                <p className="Tickets-ticketTicketDescription">
+                {/*<p className="Tickets-ticketTicketDescription">
                   Super novidade! <br />
                   Pela primeira vez o convite de evento 
                   pontuará em sua Loja Virtual!
                 </p>
                 <p className="Tickets-ticketTicketScore">
                   Pontue 300 VQPs
-                </p>
+                </p>*/}
                 <p className="Tickets-ticketTicketPrice">
                   R$ 249,90
                 </p>
-                <a href="https://www.polishop.vc/especial/convite" target="_blank" rel="noopener noreferrer" className="u-button Tickets-CTA">
+                <a href="https://www.polishop.vc/convite-innovation-xperience/p" target="_blank" rel="noopener noreferrer" className="u-button Tickets-CTA">
                   Comprar meu convite
                 </a>
               </div>
             </div>
           </div>
-          <p className="Tickets-ticketDisclaimer">
+          {/*<p className="Tickets-ticketDisclaimer">
             RECEBA EM CASA: *Shampoo e Condicionador Nutrah, Antisséptico Bucal, Creme Dental Nano Action e Immune Blend + Brinde LifeStyle
-          </p>
+          </p>*/}
         </div>
 
         <div className="Tickets-ticket Tickets-ticket--plus">
@@ -592,7 +592,7 @@ export default function Hotsite() {
               />
             </div>
             <div className="Tickets-ticketGains">
-              <div className="Tickets-ticketGainsImgWrapper">
+              {/*<div className="Tickets-ticketGainsImgWrapper">
                 <p>
                   ganhe
                   <br />
@@ -609,7 +609,7 @@ export default function Hotsite() {
                 <small>
                   *Imagem meramente ilustrativa
                 </small>
-              </div>
+        </div>*/}
               <div className="Tickets-ticketGainsTexts">
                 <p>
                   <span className="u-uppercase">
@@ -625,26 +625,26 @@ export default function Hotsite() {
                 Convite Plus 
               </p>
               <div className="Tickets-ticketTicketBody">
-                <p className="Tickets-ticketTicketDescription">
+               {/*} <p className="Tickets-ticketTicketDescription">
                   Super novidade! <br />
                   Pela primeira vez o convite de evento 
                   pontuará em sua Loja Virtual!
                 </p>
                 <p className="Tickets-ticketTicketScore">
                   Pontue 150 VQPs
-                </p>
+      </p>*/}
                 <p className="Tickets-ticketTicketPrice">
                   R$ 149,90
                 </p>
-                <a href="https://www.polishop.vc/especial/convite" target="_blank" rel="noopener noreferrer" className="u-button Tickets-CTA">
+                <a href="https://www.polishop.vc/convite-innovation-plus/p" target="_blank" rel="noopener noreferrer" className="u-button Tickets-CTA">
                   Comprar meu convite
                 </a>
               </div>
             </div>
           </div>
-          <p className="Tickets-ticketDisclaimer">
+          {/*<p className="Tickets-ticketDisclaimer">
             RECEBA EM CASA: **Luva Golden Soft, Antisséptico Bucal, Creme Dental Nano Action + Brinde LifeStyle
-          </p>
+          </p>*/}
         </div>
 
         <table border="1">
@@ -816,7 +816,7 @@ export default function Hotsite() {
           6) Escolha a Forma de Pagamento DÉBITO BÔNUS e insira as informações do CARTÃO DE CRÉDITO VIRTUAL de seu My Office.
         </p>
         <div className="AlreadyHave-warning">
-          <b>Importante</b>: Trocar seu PACK BOAS-VINDAS XPERIENCE até 05/11/2020. Após essa data, a troca estará desabilitada.
+        <strong>Importante</strong><br/>1. Para garantir o crédito, é necessário cadastrar sua credencial pelo APP até dia 31/10. <br/>2. Trocar seu PACK BOAS-VINDAS XPERIENCE até 05/11/2020. Após essa data, a troca estará desabilitada.
         </div>
       </div>
     </session>

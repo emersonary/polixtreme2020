@@ -795,6 +795,13 @@ body, html, main, #root {
     margin: 40px 0;
     box-sizing: border-box;
   }
+
+  .AlreadyHave-warning strong {
+    display: block;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: -8px;
+  }
 }
 
 .Faq {
