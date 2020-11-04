@@ -406,8 +406,8 @@ class Streaming extends Component {
     // };
 
     const token = {
-      fullname: "EMERSON SANTOS",
-      polishop_id: "esantos2002",
+      fullname: this.state.nome,
+      polishop_id: this.state.email,
       event_id: this.state.grantlevel,
       sair_href: "http://innovation2020.polishop.com",
     };
