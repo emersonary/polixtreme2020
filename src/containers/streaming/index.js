@@ -414,7 +414,7 @@ class Streaming extends Component {
       sair_href: "http://innovation2020.polishop.com",
     };
 
-    alert(JSON.stringify(token));
+    //    alert(JSON.stringify(token));
 
     const tokenstr = WebMatrixEncrypt(token);
 
