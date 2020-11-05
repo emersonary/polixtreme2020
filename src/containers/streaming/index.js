@@ -310,6 +310,8 @@ class Streaming extends Component {
           nome: res.nome,
         };
 
+        this.setState(state);
+
         // if (!res.superuser) {
         //   const { cookies } = this.props;
         //   if (res.auth && sessionid) {
@@ -411,6 +413,8 @@ class Streaming extends Component {
       event_id: this.state.grantlevel,
       sair_href: "http://innovation2020.polishop.com",
     };
+
+    alert(JSON.stringify(token));
 
     const tokenstr = WebMatrixEncrypt(token);
 
