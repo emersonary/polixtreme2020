@@ -6,7 +6,8 @@ import zlib from "react-zlib-js";
 import { instanceOf } from "prop-types";
 // import { withCookies, Cookies } from "react-cookie";
 
-import img_polixtream from "../../assets/polixtream.png";
+//import img_polixtream from "../../assets/polixtream.png";
+import img_polixtream from "../../assets/transformando-vidas--logo.png";
 import img_smallpolixtream2020 from "../../assets/small_polixtream2020.png";
 
 import sha256 from "crypto-js/sha256";
@@ -411,7 +412,7 @@ class Streaming extends Component {
       fullname: this.state.nome,
       polishop_id: this.state.email,
       event_id: this.state.grantlevel,
-      sair_href: "http://innovation2020.polishop.com",
+      sair_href: "https://transformandovidas2021.polishop.com",
     };
 
     //    alert(JSON.stringify(token));

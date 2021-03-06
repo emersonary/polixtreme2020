@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from 'react-helmet';
+import Slider from 'infinite-react-carousel';
 
 //import "./index.css";
 //import "./base.css";
@@ -72,69 +73,125 @@ const CheckIcon = () => (
 /*
 <ConsultaConvite></ConsultaConvite>            */
 export default function Hotsite() {
+
+  
   const [modalVisible, setModalVisible] = useState(false);
   const [modalVideoCode, setModalVideoCode] = useState(null);
   const IMG_PATH = 'http://polishop.vteximg.com.br/arquivos/';
   const reasons = [
     {
-      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-innovation2020--reason-01.jpg',
-      text: 'Você é uma pessoa que busca independência financeira para realizar seus sonhos?'
+      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-tvidas--BEFORE-AND-NOW.jpg',
+      text: <>Agregar conhecimento através de histórias vitoriosas de quem identificou oportunidades em momentos de crise e obteve <b>resultados extraordinários</b>.<br /><br /><a href="https://www.youtube.com/watch?v=ymeK3BKDWOY&list=PLnLCAaBP0gslll196fcLwIpiJdzEUlEPp" target="_blank" rel="noopener noreferrer" className="u-uppercase">Clique</a> e conheça histórias inspiradoras.</>
     },
     {
-      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-innovation2020--reason-02.jpg',
-      text: 'Você pensa em ter uma qualidade de vida para viver a vida que sempre sonhou?'
+      img: 'https://polishop.vteximg.com.br/arquivos/transformando-vidas--logo.png',
+      text: <>Capacitar-se com <b>conteúdos exclusivos</b> em um evento <b>dinâmico</b>, <b>100% digital</b> e <b>ao vivo</b>.</>
     },
     {
-      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-innovation2020--reason-03.jpg',
-      text: 'Você é uma pessoa que não tem tempo e está cansado de trabalhar para pagar contas?'
+      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-tvidas--logo_unipolishop_v1.jpg',
+      text: <>Desenvolver habilidades de <b>alta performance</b> que te permitirão sair da zona de conforto para a <b>realização de seus sonhos</b></>
     },
     {
-      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-innovation2020--reason-04.jpg',
-      text: 'Você é uma pessoa que adora viajar e conhecer lugares incríveis?'
+      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-tvidas--woody-falando-com-top-lideres.jpg',
+      text: <>Contribuir em tempo real para o <b>Transformando Vidas aLive 2021</b> através de uma <b>plataforma interativa</b></>
     },
     {
-      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-innovation2020--reason-05.jpg',
-      text: 'Você tem um propósito de ajudar outras pessoas?'
+      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-tvidas--assistindo-em-casa-04.jpg',
+      text: <>Participar de uma <b>convenção nacional</b> na segurança de sua casa.</>
     },
     {
-      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-innovation2020--06.png',
-      text: 'Você acha que não tem perfil para ser empreendedor?'
+      img: 'http://polishop.vteximg.com.br/arquivos/hotsite-tvidas--devices.png',
+      text: <>Assistir ao evento online de <b>qualquer dispositivo</b> com acesso à internet - computador, notebook, tablet, smartphone ou smart tv!</>
     },
   ];
-  const videos = [
+  const phrases = [
     {
-      thumbnail: 'hotsite-innovation2020--video1.jpg',
-      code: 'zZ8du7vNuZY',
-      name: 'Daniel Hoory',
+      text: 'Todo negócio só vai até onde o Empreendedor deseja chegar! Se você tem o sonho de empreender, faço um convite pessoal: venha alcançar resultados extraordinários com a FORÇA da marca POLISHOP. Venha empreender comigo!',
+      author: 'João Appolinário - Presidente e Fundador da POLISHOP',
     },
     {
-      thumbnail: 'hotsite-innovation2020--video2.jpg',
-      code: 'hIJaQEnYoGE',
-      name: 'Cristiano Cruz',
+      text: 'Seja humilde e siga o método.',
+      author: 'Gilberto Guitti - Diretor POLISHOP COM.VC',
     },
     {
-      thumbnail: 'hotsite-innovation2020--video3.jpg',
-      code: 'HGZpuKUExvk',
-      name: 'Fred e Ivana Carvalhaes',
+      text: 'Eu simplesmente não conheço oportunidade melhor do que POLISHOP com.vc para pessoas que tem sonhos a realizar!',
+      author: 'Daniel Hoory - Triplo Diamante Crown',
     },
     {
-      thumbnail: 'hotsite-innovation2020--video4.jpg',
-      code: 'bza1wQWVyp4',
-      name: 'Cornélio Diniz e Silvia Margon',
+      text: 'A Oportunidade POLISHOP sempre foi o que eu vi como a melhor possibilidade de Transformar Vidas. HOJE em especial, ela representa uma esperança para milhares de pessoas. Leve a Oportunidade a todos!',
+      author: 'Cristiano Cruz - Triplo Diamante Crown',
     },
+    {
+      text: 'Sucesso é algo que você atrai pela pessoa que você se torna. Torne-se melhor com a Oportunidade POLISHOP com.vc.',
+      author: 'Fred e Ivana Carvalhaes - Triplos Diamantes Imperial',
+    },
+    {
+      text: 'Venha VOCÊ escrever sua nova história!',
+      author: 'Cornélio Diniz e Silvia Margon - Triplos Diamantes Imperial',
+    },
+  ];
+  // const videos = [
+  //   {
+  //     thumbnail: 'hotsite-innovation2020--video1.jpg',
+  //     code: 'zZ8du7vNuZY',
+  //     name: 'Daniel Hoory',
+  //   },
+  //   {
+  //     thumbnail: 'hotsite-innovation2020--video2.jpg',
+  //     code: 'hIJaQEnYoGE',
+  //     name: 'Cristiano Cruz',
+  //   },
+  //   {
+  //     thumbnail: 'hotsite-innovation2020--video3.jpg',
+  //     code: 'HGZpuKUExvk',
+  //     name: 'Fred e Ivana Carvalhaes',
+  //   },
+  //   {
+  //     thumbnail: 'hotsite-innovation2020--video4.jpg',
+  //     code: 'bza1wQWVyp4',
+  //     name: 'Cornélio Diniz e Silvia Margon',
+  //   },
+  // ];
+
+  const bestChoices = [
+    <>Conhecer os grandes lançamentos da <b>POLISHOP</b></>,
+    <>Ter acesso a <b>ofertas exclusivas</b></>,
+    <>Inspirar-se através de mentorias com <b>grandes líderes</b></>,
+    <>Viver <b>emocionantes reconhecimentos</b></>,
+    <>Garantir <b>pontuação extra</b> na compra do convite</>,
+    <>Participar de <b>sorteios de prêmios exclusivos</b></>,
   ];
 
-  const playVideo = (code) => {
-    setModalVideoCode(code);
-    setModalVisible(true);
+  // const playVideo = (code) => {
+  //   setModalVideoCode(code);
+  //   setModalVisible(true);
+  // };
+
+  const month = (new Date()).getMonth();
+  const generatePrice = (m) => {
+    if (m === 0) return 'R$ 239,90';
+    return 'R$ 239,90'
   };
+  const generateOnlineVPQ = (m) => {
+    if (m === 0) return '480';
+    return '240';
+  };
+  const generateStoreVPQ = (m) => {
+    if (m === 0) return '500';
+    if (m === 1) return '350';
+    if (m >= 2) return '250';
+  };
+  const ticketPrice = generatePrice(month);
+  const onlineVpq = generateOnlineVPQ(month);
+  const officeVpq = generateStoreVPQ(month);
 
   return (
   <main>
     <Helmet>
-      <title>InnovatiON 2020 - POLISHOP</title>
+      <title>Transformando Vidas 2021 - POLISHOP</title>
       <meta name="theme-color" content="#000"/>
       <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+      <meta name="robots" content="noindex" />
     </Helmet>
     {
       modalVisible && (
@@ -165,40 +222,31 @@ export default function Hotsite() {
         <div className="u-flex">
           <div className="Intro-logo u-flex-col u-flex-col--50">
             <img
-              src="http://polishop.vteximg.com.br/arquivos/hotsite--inovattion2020--logo.png"
+              src="https://polishop.vteximg.com.br/arquivos/transformando-vidas--logo.png"
               alt="Inovation Logo"
             />
-            <p>
-              Dias 07 e 08 de Novembro
-            </p>
           </div>
           <div className="Intro-text u-flex-col u-flex-col--50">
             <h1>
-              Um evento inovador de
-              <b>
-                Alta performance
-              </b>
+              Um evento <b>inspirador</b>
               <span className="u-uppercase">
-                Focado no modelo de
-                <br />
-                marketing de relacionamento
+                para capacitar sua visão empreendedora na busca e realização de seus sonhos!
               </span>
             </h1>
-            <p>
-              Conquiste a sua Independência Financeira com Qualidade de Vida por meio da oportunidade mais sólida do mercado. 
-              <br />
-              <br />
-              A POLISHOP é a maior empresa multicanal do mundo e oferece a você, EMPREENDEDOR, um portfólio de mais de 1.000 produtos inovadores, um plano de bonificação que gera renda residual, um sistema de treinamento que te capacita e um entusiasmante programa de reconhecimento e  viagens.
-            </p>
           </div>
         </div>
+        <div className="Intro-text Intro-text--second">
+          <p>
+            Nos dias 06 e 07 de Março levaremos até o conforto da sua casa um dos grandes eventos POLISHOP COM.VC!
+          </p>
+        </div>
         <Countdown
-              date={new Date(2020, 10, 8, 12, 0, 0, 0)}
+              date={new Date(2021, 2, 6, 13, 0, 0, 0)}
               renderer={renderer}
         />
 
         <a href="#adquira-seu-convite" className="Intro-cta u-button">
-          Faça a diferença e garanta já o seu convite!
+          Tome a decisão e garanta já o seu convite!
         </a>
         <a href="#saiba-mais" className="Intro-knowMore">
           Saiba mais
@@ -208,54 +256,58 @@ export default function Hotsite() {
     </session>
     <session className="Video" id="saiba-mais">
       <div className="u-container">
-        <iframe title="Inovation 2020 video" src="https://www.youtube.com/embed/dWeoPL0Ibgo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
+        <iframe title="Inovation 2020 video" src="https://www.youtube.com/embed/pO_BwcUxks4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
       </div>
     </session>
     <session className="Reasons">
-      <div className="u-container">
-        <div className="Reasons-title">
-          Como saber se eu devo participar do
-          <img
-            src="http://polishop.vteximg.com.br/arquivos/hotsite--inovattion2020--logo.png"
-            alt="Inovation Logo"
-          />
+      <div className="Reasons-wrapper">
+        <div className="u-container">
+          <div className="Reasons-title">
+            Por que eu devo participar do 
+            <img
+              src="https://polishop.vteximg.com.br/arquivos/transformando-vidas--logo.png"
+              alt="Transformando Vidas - Logo"
+            />
+          </div>
+          <div className="Reasons-items">
+            {
+              reasons.map((item) => (
+                <div className="Reasons-itemsItem">
+                  <img
+                    src={item.img}
+                    alt={item.text}
+                  />
+                  <p>
+                    {item.text}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+          <div className="Reasons-carousel">
+            <Slider dots autoplay adaptiveHeight>
+              {
+                reasons.map((item) => (
+                  <div className="Reasons-itemsItem">
+                    <img
+                      src={item.img}
+                      alt={item.text}
+                    />
+                    <p>
+                      {item.text}
+                    </p>
+                  </div>
+                ))
+              }
+            </Slider>
+          </div>
+          <a href="#adquira-seu-convite" className="Reasons-cta u-button">
+            Quero participar!
+          </a>
         </div>
-        <div className="Reasons-items">
-          {
-            reasons.map((item) => (
-              <div className="Reasons-itemsItem">
-                <img
-                  src={item.img}
-                  alt={item.text}
-                />
-                <p>
-                  {item.text}
-                </p>
-              </div>
-            ))
-          }
-        </div>
-        <p className="Reasons-answer">
-          Se você respondeu
-          {' '}
-          <span className="u-red">sim</span>
-          {' '}
-          para
-          <b>
-            pelo menos uma dessas perguntas,
-          </b>
-          então o Innovation Online
-          <b className="Reasons-answer-isForYou">
-            é para você!
-          </b>
-        </p>
-
-        <a href="#adquira-seu-convite" className="Reasons-cta u-button">
-          Participar do Innovation!
-        </a>
       </div>
     </session>
-    <session className="Videos">
+    {/* <session className="Videos">
         <div className="u-container">
           <div className="u-flex">
             <div className="Videos-description">
@@ -294,51 +346,45 @@ export default function Hotsite() {
             </div>
           </div>
         </div>
-    </session>
+    </session> */}
     <session className="BestChoice">
       <h3>
-        A
-        {' '}
-        <span className="u-red">
-          melhor escolha
-        </span>
-        {' '}
-        é participar do
-        <img
-          src={`${IMG_PATH}hotsite--inovattion2020--logo.png`}
-          alt="Inovation Logo"
-        />
+        Com o <span className="u-red">Transformando Vidas aLive 2021</span> você vai:
       </h3>
       <div className="BestChoice-list">
-        <p className="BestChoice-listTitle">
-          Neste evento você vai:
-        </p>
         <ul>
-          <li>
-            Conhecer os grandes lançamentos da POLISHOP
-            <CheckIcon />
-          </li>
-          <li>
-            Ter acesso a ofertas exclusivas
-            <CheckIcon />
-          </li>
-          <li>
-            Inspirar-se através de mentorias com grandes líderes
-            <CheckIcon />
-          </li>
-          <li>
-            Aprender a construir renda residual
-            <CheckIcon />
-          </li>
-          <li>
-            Viver emocionantes reconhecimentos
-            <CheckIcon />
-          </li>
-          <li>
-            Usar as ferramentas que funcionam por meio de fantásticos treinamentos
-            <CheckIcon />
-          </li>
+          {
+            bestChoices && bestChoices.map((text) => (
+              <li>
+                {text}
+                <CheckIcon />
+              </li>
+            ))
+          }
         </ul>
+        <a href="#adquira-seu-convite" className="Reasons-cta u-button">
+          Comprar meu convite!
+        </a>
+      </div>
+    </session>
+    <session className="Paritipants">
+      <h3>
+        Participação de
+      </h3>
+      <img src={`${IMG_PATH}hotsite-tvidas--participants-trim.png`} />
+      <div className="Paritipants-phrases">
+        {
+          phrases && phrases.map(({ text, author }) => (
+            <blockquote className="Paritipants-phrase">
+              {/* <LeftQuote />
+              <RightQuote /> */}
+              <p>
+                {text}
+              </p>
+              <b>{author}</b>
+            </blockquote>
+          ))
+        }
       </div>
     </session>
     <session className="Participations">
@@ -484,7 +530,7 @@ export default function Hotsite() {
         <h3>
           Como participar
         </h3>
-        <p className="Tickets-subtitle">
+        {/* <p className="Tickets-subtitle">
           Você pode participar do
           <img
             src={`${IMG_PATH}hotsite--inovattion2020--logo.png`}
@@ -497,93 +543,75 @@ export default function Hotsite() {
           {' '}
           <span className="u-uppercase u-red">xperience!</span>
           *
-        </p>
+        </p> */}
 
-        <p className="Tickets-firstDisclaimer">
-          * Para garantir a pontuação, lembre-se de usar o ID e CPF do 1º titular. Válido apenas 1 convite (Xperience ou Plus) por ID. 
-        </p>
+        {/* <p className="Tickets-firstDisclaimer">
+          * Para garantir a Pontuação Extra Exclusiva para Empreendedores Independentes POLISHOP, lembre-se de usar o ID e CPF do 1º titular. Válido apenas 1 convite por ID. Valor do kit de produtos: <span className="u-red">{ticketPrice}</span>
+        </p> */}
         <div className="Tickets-ticket Tickets-ticket--xperience" id="adquira-seu-convite">
           <div className="Tickets-ticket-wrapper">
             <div className="Tickets-ticketPhoneImg">
               <img
-                src={`${IMG_PATH}hotsite-innovation2020--celular-innovation-xperience.png`}
+                src={`${IMG_PATH}hotsite-tvidas--celular.png`}
                 alt="Ticket Experience"
               />
             </div>
             <div className="Tickets-ticketGains">
-              {/*<div className="Tickets-ticketGainsImgWrapper">
-                <p>
-                  ganhe
-                  <br />
-                  boas-vindas xperience
-                </p>
+              <div className="Tickets-ticketGainsImgWrapper">
                 <img
-                  src={`${IMG_PATH}hotsite-innovation2020--pack-prod-xperience.png`}
-                  alt=""
-                />
-                <img
-                  src={`${IMG_PATH}hotsite-innovation2020--brinde.png`}
+                  src={`${IMG_PATH}hotsite-tvidas--pack.jpg`}
                   alt=""
                 />
                 <small>
-                  *Imagem meramente ilustrativa
+                  * Imagem meramente ilustrativa, os produtos poderão ser alterados sem aviso prévio
                 </small>
-        </div>*/}
+              </div>
               <div className="Tickets-ticketGainsTexts">
                 <p>
-                  <span className="u-uppercase">
-                    Evento Innovation 2020
-                    <CheckIcon />
-                  </span>
-                  07 e 08 de Novembro de 2020
-                </p>
-                <p>
-                  <span className="u-uppercase">
-                    Backstage Innovation
-                    <CheckIcon />
-                  </span>
-                  Viva uma experiência única e acompanhe os bastidores 
-                  da maior convenção do ano 
-                  em uma transmissão exclusiva 
-                  no dia 06 de Novembro!
-                </p>
-                <p>
-                  <span className="u-uppercase">
-                    Mentoria com o presidente
-                    <CheckIcon />
-                  </span>
-                  Mentoria com o Presidente e Fundador da POLISHOP João Appolinário e o Diretor do canal Polishop com.vc Gilberto Guitti, no dia 06 de Novembro.
+                  {/* Na compra do convite, você ganha produtos exclusivos <b>Lifestyle</b> e <b>VIVA Smart Nutrition</b> e ainda garante <b className="u-uppercase">pontuação extra</b> na sua loja virtual!* */}
+                  {/* Na compra do kit <b>Todo Dia Com Você Transformando Vidas 2021</b> você participa do evento!
+                  <br />
+                  Compre até 31 de Janeiro e pontue <b>480 VQPs</b>! */}
+
+                  Na compra de um <b>Kit Todo Dia Com Você Transformando Vidas 2021</b> você paga <b>R$ 239,90</b> e recebe:
+                  <br />
+                  <ul>
+                    <li>
+                      R$ 418,69 em produtos
+                    </li>
+                    <li>
+                      01 convite para os 02 dias da convenção Transformando Vidas aLIVE
+                    </li>
+                  </ul>
                 </p>
               </div>
             </div>
             <div className="Tickets-ticketTicket">
-              <p className="Tickets-ticketTicketHeader">
-                Convite Xperience 
-              </p>
+              <img src="http://polishop.vteximg.com.br/arquivos/hotsite-tvidas--bg-ticket02.jpg" className="Tickets-ticketTicketHeader" />
               <div className="Tickets-ticketTicketBody">
-                {/*<p className="Tickets-ticketTicketDescription">
-                  Super novidade! <br />
-                  Pela primeira vez o convite de evento 
-                  pontuará em sua Loja Virtual!
+                <p className="Tickets-ticketTicketPrice">
+                  <span>De: R$ 418,69</span>
+                  Por: {ticketPrice}
                 </p>
                 <p className="Tickets-ticketTicketScore">
-                  Pontue 300 VQPs
-                </p>*/}
-                <p className="Tickets-ticketTicketPrice">
-                  R$ 249,90
+                  {/* <b>{onlineVpq} VQPs</b>
+                  <span>nas compras via internet</span> */}
+                  COMPRE ATÉ <b>31/01</b>
+                  {' '}
+                  E PONTUE 480 VQPs POR KIT + CONVITE! *
                 </p>
-                <a href="https://www.polishop.vc/convite-innovation-xperience/p" target="_blank" rel="noopener noreferrer" className="u-button Tickets-CTA">
-                  Comprar meu convite
+                <a href="https://www.polishop.vc/_secure/minha-loja/exclusivo" target="_blank" rel="noopener noreferrer" className="u-button Tickets-CTA">
+                  Comprar meu convite na Aba Exclusivo pra.vc
                 </a>
               </div>
             </div>
           </div>
-          {/*<p className="Tickets-ticketDisclaimer">
-            RECEBA EM CASA: *Shampoo e Condicionador Nutrah, Antisséptico Bucal, Creme Dental Nano Action e Immune Blend + Brinde LifeStyle
-          </p>*/}
+          <p className="Tickets-ticketDisclaimer">
+            * Na compra de 02 kits ou mais, você continua a pontuar em dobro e ainda recebe vários acessos para a convenção!
+          </p>
         </div>
 
-        <div className="Tickets-ticket Tickets-ticket--plus">
+        {/* <div className="Tickets-ticket Tickets-ticket--plus">
           <div className="Tickets-ticket-wrapper">
             <div className="Tickets-ticketPhoneImg">
               <img
@@ -592,7 +620,7 @@ export default function Hotsite() {
               />
             </div>
             <div className="Tickets-ticketGains">
-              {/*<div className="Tickets-ticketGainsImgWrapper">
+              <div className="Tickets-ticketGainsImgWrapper">
                 <p>
                   ganhe
                   <br />
@@ -609,7 +637,7 @@ export default function Hotsite() {
                 <small>
                   *Imagem meramente ilustrativa
                 </small>
-        </div>*/}
+              </div>
               <div className="Tickets-ticketGainsTexts">
                 <p>
                   <span className="u-uppercase">
@@ -625,42 +653,77 @@ export default function Hotsite() {
                 Convite Plus 
               </p>
               <div className="Tickets-ticketTicketBody">
-               {/*} <p className="Tickets-ticketTicketDescription">
+                <p className="Tickets-ticketTicketDescription">
                   Super novidade! <br />
                   Pela primeira vez o convite de evento 
                   pontuará em sua Loja Virtual!
                 </p>
                 <p className="Tickets-ticketTicketScore">
                   Pontue 150 VQPs
-      </p>*/}
+                </p>
                 <p className="Tickets-ticketTicketPrice">
                   R$ 149,90
                 </p>
-                <a href="https://www.polishop.vc/convite-innovation-plus/p" target="_blank" rel="noopener noreferrer" className="u-button Tickets-CTA">
+                <a href="https://www.polishop.vc/especial/convite" target="_blank" rel="noopener noreferrer" rel="noopener noreferrer" className="u-button Tickets-CTA">
                   Comprar meu convite
                 </a>
               </div>
             </div>
           </div>
-          {/*<p className="Tickets-ticketDisclaimer">
+          <p className="Tickets-ticketDisclaimer">
             RECEBA EM CASA: **Luva Golden Soft, Antisséptico Bucal, Creme Dental Nano Action + Brinde LifeStyle
-          </p>*/}
-        </div>
+          </p>
+        </div> */}
 
         <table border="1">
           <thead>
             <tr>
               <td></td>
-              <td>CONVITE DIGITAL INNOVATION 2020 XPERIENCE</td>
-              <td>CONVITE DIGITAL INNOVATION 2020 PLUS</td>
+              <td>18 a 31 de Janeiro de 2021</td>
+              <td>01 de Fevereiro a <br /> 06 de Março  de 2021</td>
+              {/* <td>01 a 06 de Março de 2021</td> */}
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
-              EVENTO INNOVATION
-              <br />
-              07 e 08 de Novembro
+                VALOR
+              </td>
+              <td>
+                R$ 239,90
+              </td>
+              <td>
+                R$ 239,90
+              </td>
+              {/* <td>
+                R$ 250,00
+              </td> */}
+            </tr>
+            <tr>
+              <td>
+                PONTUAÇÃO
+                <br />
+                (será cobrado frete para envio do kit)
+              </td>
+              <td>
+                <b className="Tickets-tableBig">
+                480 VQPs *
+                </b>
+              </td>
+              <td>
+                240 VQPs *
+              </td>
+              {/* <td>
+                250 VQPs *
+              </td> */}
+            </tr>
+           
+            <tr>
+              <td>
+                KIT TODO DIA COM VOCÊ
+                <br />
+                com produtos no valor de R$ 418,69 
+                (será cobrado frete para o envio)
               </td>
               <td>
                 SIM
@@ -668,100 +731,72 @@ export default function Hotsite() {
               <td>
                 SIM
               </td>
+              {/* <td>
+                250 VQPs *
+              </td> */}
             </tr>
+            
             <tr>
               <td>
-              BACKSTAGE INNOVATION
-              <br />
-              Dia 06 de Novembro
+                Acesso aos dois dias de convenção
+                <br />
+                Transformando Vidas aLIVE 2021
               </td>
               <td>
                 SIM
               </td>
               <td>
-                NÃO
+                SIM
               </td>
+              {/* <td>
+                250 VQPs *
+              </td> */}
             </tr>
+            
             <tr>
               <td>
-              MENTORIA COM O PRESIDENTE
-              <br />
-              Dia 06 de Novembro
+                Válido para Kits Adesão Bronze, Silver ou Gold com o selo
+                <br />
+                Transformando Vidas 2021
               </td>
               <td>
                 SIM
               </td>
               <td>
-                NÃO
+                SIM
               </td>
+              {/* <td>
+                250 VQPs *
+              </td> */}
             </tr>
+            
             <tr>
               <td>
-                BOAS VINDAS XPERIENCE
+                Acessos múltiplos na compra de
+                <br />
+                02 KIT ou mais
               </td>
               <td>
-                SIM*
+                SIM
               </td>
               <td>
-                NÃO
+                SIM
               </td>
+              {/* <td>
+                250 VQPs *
+              </td> */}
             </tr>
-            <tr>
-              <td>
-                BOAS VINDAS PLUS
-              </td>
-              <td>
-                NÃO
-              </td>
-              <td>
-                SIM*
-              </td>
-            </tr>
-            <tr>
-              <td>
-                VPQs
-              </td>
-              <td>
-                300 VQPs *
-              </td>
-              <td>
-                150 VQPs *
-              </td>
-            </tr>
-            <tr>
-              <td>
-                VALOR PROMOCIONAL <br />
-                Até dia 18 de Outubro
-              </td>
-              <td>
-                R$ 199,90
-              </td>
-              <td>
-                R$ 99,90
-              </td>
-            </tr>
-            <tr>
-              <td>
-                VALOR <br />
-                De 16 de Outubro a 06 de Novembro
-              </td>
-              <td>
-                R$ 249,90 
-              </td>
-              <td>
-                R$ 149,90 
-              </td>
-            </tr>
+            
           </tbody>
         </table>
         <p className="Tickets-tableDisclaimer">
-          * BENEFÍCIOS EXCLUSIVOS PARA COMPRAS ATÉ 31/10
+          * Para garantir a Pontuação Extra Exclusiva para Empreendedores Independentes POLISHOP, lembre-se de usar o ID e CPF do 1º titular.   
         </p>
         <a href="#adquira-seu-convite" className="u-button Tickets-mainnCta">
           Garantir meu convite
         </a>
     </session>
-    <session className="AlreadyHave" id="utilizar-bonus">
+    {/* <session className="AlreadyHave" id="utilizar-bonus">
       <div className="u-container">
         <h3>
           Já tenho a credencial innovation premium, vip ou exclusive
@@ -816,88 +851,36 @@ export default function Hotsite() {
           6) Escolha a Forma de Pagamento DÉBITO BÔNUS e insira as informações do CARTÃO DE CRÉDITO VIRTUAL de seu My Office.
         </p>
         <div className="AlreadyHave-warning">
-        <strong>Importante</strong><br/>1. Para garantir o crédito, é necessário cadastrar sua credencial pelo APP até dia 31/10. <br/>2. Trocar seu PACK BOAS-VINDAS XPERIENCE até 05/11/2020. Após essa data, a troca estará desabilitada.
+          <b>Importante</b>: Trocar seu PACK BOAS-VINDAS XPERIENCE até 05/11/2020. Após essa data, a troca estará desabilitada.
         </div>
       </div>
-    </session>
+    </session> */}
     <session className="Faq">
       <h3>
         Perguntas frequentes
       </h3>
       <div className="u-container">
-        <div className="Faq-line">
-          <div className="Faq-item">
-            <p className="Faq-itemTitle">
-              Posso cadastrar mais de uma credencial Innovation Premium, VIP ou Exclusive em um ID/CPF?
-            </p>
-            <p className="Faq-itemTxt">
-              Cada credencial poderá ser cadastrada uma ÚNICA VEZ e o CPF/ID cadastrado não poderá ser utilizado novamente.
-            </p>
-          </div>
-        
-          <div className="Faq-item">
-            <p className="Faq-itemTitle">
-              Como eu utilizo o Bônus da credencial Innovation Premium, VIP ou Exclusive para garantir meu convite digital Innovation Xperience?
-            </p>
-            <p className="Faq-itemTxt">
-              <a href="#utilizar-bonus">
-                Saiba como clicando aqui
-              </a>
-            </p>
-          </div>
+      
+      <div className="Faq-line">
+        <div className="Faq-item">
+          <p className="Faq-itemTitle">
+            Como eu assisto a convenção on-line?
+          </p>
+          <p className="Faq-itemTxt">
+            Você receberá o link de acesso dias antes da convenção online com todas as instruções de acesso.
+          </p>
         </div>
-
-        <div className="Faq-line">
-          <div className="Faq-item">
-            <p className="Faq-itemTitle">
-              Tenho a credencial para  Innovation 2020, que aconteceria nos dias 05, 06 e 07 de Setembro no São Paulo Expo. O que fazer?
-            </p>
-            <p className="Faq-itemTxt">
-              O evento que seria realizado no São Paulo Expo 
-              de 05 a 07 de Setembro não foi cancelado. 
-              <br />
-              O Innovation 2020 será realizado de forma 100% on-line nos dias 07 e 08 de Novembro de 2020 e a credencial física que dava acesso ao evento de São Paulo poderá ser trocada pelo convite digital Innovation 2020 Xperience.
-              <br />
-              <br />
-              <a href="#como-participar">
-                Saiba como participar clicando aqui. 
-              </a>
-            </p>
-          </div>
         
-          <div className="Faq-item">
-            <p className="Faq-itemTitle">
-              O APP POLIINNOVATION está disponível para o sistema iOS?
-
-            </p>
-            <p className="Faq-itemTxt">
-              O APP POLIINNOVATION está disponível apenas para sistemas Android através da Loja de Aplicativos PlayStore. Em caso de dúvidas, entre em contato através do e-mail 
-              <a href="mailto:eventos@polishop.com.vc">eventos@polishop.com.vc</a>
-            </p>
-          </div>
+        <div className="Faq-item">
+          <p className="Faq-itemTitle">
+            Não recebi a senha. O que eu faço?
+          </p>
+          <p className="Faq-itemTxt">
+            Login e Senha serão enviados para o e-mail de compra a partir de Fevereiro.
+          </p>
         </div>
+      </div>
 
-        <div className="Faq-line">
-          <div className="Faq-item">
-            <p className="Faq-itemTitle">
-              Como eu assisto a convenção on-line?
-            </p>
-            <p className="Faq-itemTxt">
-              No dia do evento, acesse esse mesmo site (innovation2020.polishop.com).
-              <br />
-              Após o término da contagem regressiva, abrirá uma janela onde deverá colocar seu LOGIN e SENHA.
-            </p>
-          </div>
-        
-          <div className="Faq-item">
-            <p className="Faq-itemTitle">
-              Não recebi a senha. O que eu faço?
-            </p>
-            <p className="Faq-itemTxt">
-              Mandar um email para <a href="mailto:eventos@polishop.com.vc">eventos@polishop.com.vc</a>
-            </p>
-          </div>
-        </div>
       </div>
     </session>
 
@@ -908,18 +891,17 @@ export default function Hotsite() {
         </h3>
         <p>
           Os problemas técnicos ou mau funcionamento decorrentes, mas não limitados às ocorrências, tais como, erros de hardware ou software de propriedade do participante; defeito ou falha do computador, telefone, cabo, satélite, rede, eletroeletrônico, equipamento sem fio, que prejudiquem o acesso ou a conexão à Internet; erro ou limitação por parte dos provedores de serviço, hospedagem; erro na transmissão das informações; falhas no envio e/ou recebimento de mensagens de correio eletrônico; atraso ou falha no envio e/ou recebimento de mensagens de correio eletrônico; ações de hackers, vírus, bugs, worms, que venham a prejudicar o acesso ao site de divulgação desta promoção e/ou que impeçam ou dificultem a participação do empreendedor neste evento, não poderão ser atribuídos à Polimport.
-
           <br />
           <br />
           <br />
           <br />
-
-          ATENÇÃO: Trata-se de evento comercial fechado e e para empreendedores independentes – POLISHOP.COM.VC – regularmente credenciados. Portanto, eventuais dúvidas, sugestões ou reclamações deverão ser registradas no CANAL EXCLUSIVO de atendimento ao empreendedor, conforme manual de procedimentos. ADVERTE-SE que não serão conhecidas as dúvidas / reclamações realizadas nos canais estranhos ao negócio (RECLAME AQUI, etc.…).
-
+          <b className="u-red">ATENÇÃO</b>: Trata-se de evento comercial fechado e e para empreendedores independentes – <a href="https://www.polishop.com.vc" target="_blank" rel="noopener noreferrer">POLISHOP.COM.VC</a> – regularmente credenciados. Portanto, eventuais dúvidas, sugestões ou reclamações deverão ser registradas no CANAL EXCLUSIVO de atendimento ao empreendedor, conforme manual de procedimentos. 
+          <br />
+          <b className="u-red">ADVERTE-SE</b> que não serão conhecidas as dúvidas / reclamações realizadas nos canais estranhos ao negócio (RECLAME AQUI, etc.…).
         </p>
         <img
-          src="http://polishop.vteximg.com.br/arquivos/hotsite--inovattion2020--logo.png"
-          alt="Inovation Logo"
+          src="http://polishop.vteximg.com.br/arquivos/transformando-vidas--logo.png"
+          alt="Transformando Vidas - POLISHOP"
         />
       </div>
     </session>
