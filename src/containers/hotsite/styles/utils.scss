@@ -1,10 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@100;300;400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 .u-flex {
   align-items: start;
   display: flex;
+}
+
+.u-flex-center {
+  align-items: centar;
+  display: flex;
+  justify-content: center;
 }
 
 .u-flex-col {
@@ -21,6 +26,28 @@
   margin: auto;
   max-width: 1040px;
   width: 100%;
+}
+
+.u-large-container {
+  display: block;
+  margin: auto;
+  max-width: 1366px;
+  padding: 0 34px;
+  width: 100%;
+  @media (max-width: 767px) {
+    padding: 0 12px;
+  }
+}
+
+.u-small-container {
+  display: block;
+  margin: auto;
+  max-width: 862px;
+  padding: 0 34px;
+  width: 100%;
+  @media (max-width: 767px) {
+    padding: 0;
+  }
 }
 
 .u-uppercase {
@@ -55,4 +82,68 @@
 
 .u-center {
   text-align: center;
+}
+
+.u-section { 
+  position: relative;
+  /* The height of the container. Must be set, but it doesn't really matter what the value is. */
+  height: 100vh;
+
+  /* For text formatting. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.u-parallax::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateZ(-1px) scale(1.5);
+  background-size: 100%;
+  z-index: -1;
+}
+
+.u-session-title {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+  @media (max-width: 767px) {
+    font-size: 26px;
+  }
+}
+  
+.wrapper {
+  /* The height needs to be set to a fixed value for the effect to work.
+   * 100vh is the full height of the viewport. */
+  height: 100vh;
+  /* The scaling of the images would add a horizontal scrollbar, so disable x overflow. */
+  overflow-x: hidden;
+  /* Enable scrolling on the page. */
+  overflow-y: auto;
+  /* Set the perspective to 2px. This is essentailly the simulated distance from the viewport to transformed objects.*/
+  perspective: 2px;
+}
+
+.u-visible-desktop {
+  display: block !important;
+  @media (max-width: 767px) {
+    display: none !important;
+  }
+}
+
+.u-visible-mobile {
+  display: none !important;
+  @media (max-width: 767px) {
+    display: block !important;
+  }
+}
+
+.u-red {
+  color: #B90604;
 }

@@ -6,7 +6,8 @@ import zlib from "react-zlib-js";
 import { instanceOf } from "prop-types";
 // import { withCookies, Cookies } from "react-cookie";
 
-import img_polixtream from "../../assets/polixtream.png";
+//import img_polixtream from "../../assets/polixtream.png";
+import img_polixtream from "../../assets/transformando-vidas--logo.png";
 import img_smallpolixtream2020 from "../../assets/small_polixtream2020.png";
 
 import sha256 from "crypto-js/sha256";
@@ -345,7 +346,7 @@ class Streaming extends Component {
     return (
       <div className="wrapper">
         <div className="polixtream">
-          <img src={img_polixtream} alt="" />
+          <img src="http://polishop.vteximg.com.br/arquivos/rumo-2030-logo.png" alt="" />
         </div>
 
         <div className="form-wrapper">
@@ -417,7 +418,11 @@ class Streaming extends Component {
       authtimestamp: this.state.authtimestamp,
       polishop_id: this.state.email,
       event_id: this.state.grantlevel,
+<<<<<<< HEAD
       sair_href: "http://transformandovidas2021.polishop.com/",
+=======
+      sair_href: "https://transformandovidas2021.polishop.com",
+>>>>>>> ea96754631937c5907d4dec5621b263bf2d7a339
     };
 
     //    alert(JSON.stringify(token));
