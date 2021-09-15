@@ -441,6 +441,7 @@ class Streaming extends Component {
     console.log("token", token);
 
     window.open(src, "_self");
+    return <></>;
 
     // return (
     //   <div className="streaming">
