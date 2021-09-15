@@ -342,7 +342,7 @@ class Streaming extends Component {
     return (
       <div className="wrapper">
         <div className="polixtream">
-          <img src={img_polixtream} alt="" />
+          <img src="http://polishop.vteximg.com.br/arquivos/rumo-2030-logo.png" alt="" />
         </div>
 
         <div className="form-wrapper">
