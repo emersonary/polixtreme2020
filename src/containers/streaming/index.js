@@ -165,6 +165,8 @@ class Streaming extends Component {
       idvip: null,
       nick: null,
       nome: null,
+      allowduplicate: null,
+      authtimestamp: null,
       errorauth: false,
       errorsessao: false,
       streamingsrc: null,
@@ -308,6 +310,8 @@ class Streaming extends Component {
           idvip: res.idvip,
           nick: res.nick,
           nome: res.nome,
+          allowduplicate: res.allowduplicate,
+          authtimestamp: res.authtimestamp,
         };
 
         this.setState(state);
@@ -409,9 +413,11 @@ class Streaming extends Component {
 
     const token = {
       fullname: this.state.nome,
+      allowduplicate: this.state.allowduplicate,
+      authtimestamp: this.state.authtimestamp,
       polishop_id: this.state.email,
       event_id: this.state.grantlevel,
-      sair_href: "http://innovation2020.polishop.com",
+      sair_href: "http://transformandovidas2021.polishop.com/",
     };
 
     //    alert(JSON.stringify(token));
