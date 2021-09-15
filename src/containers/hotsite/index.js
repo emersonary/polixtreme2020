@@ -316,7 +316,7 @@ export default function Hotsite() {
             </div>
           </div>
           <Countdown
-              date={new Date(2021, 9, 18, 18, 30, 0, 0)}
+              date={new Date(2021, 8, 18, 12, 0, 0, 0)}
               renderer={renderer}
         />
         <br/>
