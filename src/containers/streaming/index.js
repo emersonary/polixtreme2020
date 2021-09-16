@@ -421,7 +421,7 @@ class Streaming extends Component {
       authtimestamp: this.state.authtimestamp,
       polishop_id: this.state.email,
       event_id: this.state.grantlevel,
-      sair_href: "http://transformandovidas2021.polishop.com/",
+      sair_href: "https://rumoa2030.polishop.com",
     };
 
     //    alert(JSON.stringify(token));
