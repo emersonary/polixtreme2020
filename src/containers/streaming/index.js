@@ -328,7 +328,7 @@ class Streaming extends Component {
         //   }
         // }
 
-        console.log("state", state);
+        // console.log("state", state);
         if (state.auth) {
           this.StreamScreen(res.streamingsrc);
         } else {
@@ -443,8 +443,8 @@ class Streaming extends Component {
       encodeURIComponent(tokenstr) +
       "&sign=" +
       encodeURIComponent(signstr);
-    console.log("src3", src);
-    console.log("token", token);
+    // console.log("src3", src);
+    // console.log("token", token);
 
     window.open(src, "_self");
 
@@ -488,7 +488,7 @@ class Streaming extends Component {
   };
 
   render() {
-    console.log("logged", this.state.auth);
+    // console.log("logged", this.state.auth);
     return this.state.auth
       ? this.StreamScreen(this.state.streamingsrc)
       : this.LoginScreen();
