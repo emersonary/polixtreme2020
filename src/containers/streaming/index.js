@@ -169,6 +169,7 @@ class Streaming extends Component {
       allowduplicate: null,
       authtimestamp: null,
       errorauth: false,
+      qtdeqrcode: null,
       errorsessao: false,
       streamingsrc: null,
       titulo: null,
@@ -301,6 +302,7 @@ class Streaming extends Component {
           auth: res.auth,
           // auth: res.auth && (!!sessionid || !res.superuser),
           errorauth: !res.auth,
+          qtdeqrcode: res.qtdeqrcode,
           grantlevel: res.grantlevel,
           titulo: res.titulo,
           nosorte: res.nosorte,
@@ -326,7 +328,7 @@ class Streaming extends Component {
         //   }
         // }
 
-        console.log("auth", state.auth);
+        console.log("state", state);
         if (state.auth) {
           this.StreamScreen(res.streamingsrc);
         } else {
@@ -384,9 +386,14 @@ class Streaming extends Component {
               {formErrors.password.length > 0 && (
                 <span className="errorMessage">{formErrors.password}</span>
               )}
-              {this.state.errorauth && (
-                <span className="errorAuth">Credenciais Inválidas!</span>
-              )}
+              {this.state.errorauth &&
+                (this.state.qtdeqrcode > 0 ? (
+                  <span className="errorAuth">
+                    Acesso presencial concedido em evento físico!
+                  </span>
+                ) : (
+                  <span className="errorAuth">Credenciais inválidas!</span>
+                ))}
               {this.state.errorsessao && (
                 <span className="errorAuth">
                   USUÁRIO {this.state.email.toUpperCase()} JÁ ESTÁ LOGADO EM
